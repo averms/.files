@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+
+if [ "$DOTFILES_HOST" = "darwin" ]; then
+    exec /Applications/mpv.app/Contents/MacOS/mpv "$@"
+else
+    exec flatpak run io.mpv.Mpv "$@"
+fi

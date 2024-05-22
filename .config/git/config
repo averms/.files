@@ -1,0 +1,35 @@
+[core]
+	autocrlf = input
+[gpg]
+	; format = ssh
+[rebase]
+	updaterefs = true
+[rerere]
+	enabled = true
+[pull]
+	rebase = true
+[init]
+	defaultbranch = trunk
+[alias]
+	sdiff = diff --staged
+	brls = branch --all
+	ec = config --global -e
+	co = checkout
+	s = status
+	u = restore
+	cm = commit
+[tar "tar.zst"]
+	command = zstd -q -8 -T0
+[merge]
+	tool = nvimmerge
+[mergetool "nvimmerge"]
+	cmd = nvim -u ~/.config/nvim/minit.vim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+	trustexitcode = true
+[diff]
+	tool = nvimdiff
+	wserrorhighlight = all
+[difftool "nvimdiff"]
+	cmd = nvim -u ~/.config/nvim/minit.vim -d \"$LOCAL\" \"$REMOTE\"
+	trustexitcode = true
+[include]
+	path = me

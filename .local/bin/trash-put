@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+
+if [ "$DOTFILES_HOST" = "darwin" ]; then
+    exec trash "$@"
+else
+    exec gio trash "$@"
+fi

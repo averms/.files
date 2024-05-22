@@ -1,0 +1,34 @@
+% Math commands.
+% Number only one line of an amsmath environment
+\newcommand*{\yesnumber}{\refstepcounter{equation}\tag{\theequation}}
+% Theorems. Counter restarted every section.
+\newtheorem{claim}{Claim}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}[theorem]
+
+% degree symbol
+\newcommand*\degr[0]{°}
+% absolute value or cardinality of a set.
+\newcommand*\abs[1]{\left\lvert #1 \right\rvert}
+% norm of a vector.
+\newcommand*\norm[1]{\left\lVert #1 \right\rVert}
+% horizontal list of vector elements
+\newcommand*\hvec[1]{\left\langle #1 \right\rangle}
+% vector variables are bold
+\renewcommand*\vec[1]{\symbf{#1}}
+% unit vector
+\newcommand*\uvec[1]{\hat{\vec{#1}}}
+% nand
+\newcommand*\nand[0]{\barwedge}
+
+% complement of set
+\newcommand*\setcomp[1]{#1^{\complement}}
+% multinomial coefficient
+\newcommand*\multinom[2]{\binom{#1}{#2}}
+% half quad spacing, uses amsmath
+\newcommand*\hquad[0]{\mspace{9mu}}
+% falling factorial or n-permutations of x
+\newcommand*\ffact[2]{\left(#1\right)_{#2}}
+
+\DeclareMathOperator\proj{proj}
+\DeclareMathOperator\comp{comp}

@@ -1,0 +1,52 @@
+directory: ~/Music/beets_library
+library: ~/.local/share/beets/library.db
+original_date: true
+per_disc_numbering: true
+import:
+  languages: en
+  from_scratch: true
+paths:
+  default: "$albumartist/$album%aunique{} ($year)/$disc.$track - $title"
+  singleton: "!non-album/$artist/$title"
+  comp: "!compilations/$album%aunique{} ($year)/$disc.$track - $title"
+plugins:
+  - zero
+  - convert
+  - info
+  - fetchart
+  - extrafiles
+  - badfiles
+  - mbcollection
+zero:
+  auto: true
+  keep_fields:
+    [title, artist, album, albumartist, art, comment, performer, composer,
+     year, disc, disctotal, track, tracktotal, genre, mb_albumid]
+  update_database: true
+musicbrainz:
+  user: dnakememester
+  pass: get password from manager
+mbcollection:
+  collection: '01152f50-f42d-4467-8924-0a1bf5f2bd45'
+convert:
+  copy_album_art: true
+  never_convert_lossy_files: true
+  format: flac
+  dest: "~/Desktop/music"
+  formats:
+    opus: /home/anon/Code/scripts/toopus.sh $source $dest
+    aac:
+      command: /home/anon/Code/scripts/toaac.sh $source $dest
+      extension: m4a
+fetchart:
+  cautious: true
+  sources: [filesystem, itunes]
+extrafiles:
+  patterns:
+    extra:
+      - "[sS]cans/"
+      - "[aA]rtwork/"
+      - "[aA]rt/"
+      - "extra/"
+  paths:
+    extra: $albumpath/extra

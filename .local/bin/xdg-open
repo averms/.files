@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+
+if [[ -f /run/.toolboxenv ]]; then
+    exec flatpak-spawn --host xdg-open "$@"
+else
+    exec nohup gio open 1>/dev/null 2>/dev/null "$@"
+fi

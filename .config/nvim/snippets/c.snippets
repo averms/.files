@@ -1,0 +1,17 @@
+snippet once "Include guard" b
+	#ifndef ${1:`toupper(expand('%:t:r')) . '_H_30185295'`}
+	#define $1
+	${0:VISUAL}
+	#endif  // $1
+
+snippet copyright "Copyright header" b
+	// Copyright © `strftime('%Y')` Aman Verma <https://aman.raoverma.com>
+	// Distributed under the ${1}, see ${2:LICENSE.md} for details.
+
+snippet scratch "main() template" b
+	#include <stdio.h>
+
+	int main(void) {
+		${0:VISUAL}
+		return 0;
+	}

@@ -1,0 +1,15 @@
+[Default Applications]
+application/epub+zip=com.calibre_ebook.calibre.ebook-viewer.desktop
+application/x-xpinstall=firefox.desktop
+image/jpeg=org.xfce.ristretto.desktop
+image/png=org.xfce.ristretto.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=org.libreoffice.LibreOffice.writer.desktop
+text/markdown=org.gnome.gedit.desktop
+
+[Added Associations]
+application/epub+zip=com.calibre_ebook.calibre.ebook-viewer.desktop;
+application/x-xpinstall=firefox.desktop;
+image/jpeg=org.xfce.ristretto.desktop;
+image/png=org.xfce.ristretto.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=org.libreoffice.LibreOffice.writer.desktop;
+text/markdown=org.gnome.gedit.desktop;

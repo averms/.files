@@ -1,0 +1,6 @@
+set confirm off
+set pagination off
+set print array on
+set print pretty on
+set print vtbl on
+set debuginfod enabled on

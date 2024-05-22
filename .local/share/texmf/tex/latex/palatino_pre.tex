@@ -1,0 +1,101 @@
+% Copy this: \def\isdraftmode{1}
+\ifdefined\isdraftmode
+  \documentclass[draft]{scrartcl}
+\else
+  \documentclass{scrartcl}
+\fi
+\KOMAoptions{
+  paper=letter,
+  fontsize=12pt,
+  abstract=false,
+  parskip=false,
+  BCOR=0pt,
+  DIV=calc
+}
+% AMS stuff should come first
+\usepackage{amsmath,amsthm}
+\usepackage{iftex}
+
+% Font stuff.
+\ifluatex
+  \usepackage{unicode-math}
+  % Set up so all fonts other than main font scale to match it.
+  % Order matters! Main font should be first.
+  \defaultfontfeatures{Scale=MatchLowercase}
+  % TeX ligatures should always be enabled. Common if the font supports it.
+  \defaultfontfeatures[\rmfamily]{Ligatures={TeX,Common},Scale=1}
+  \setmainfont[Numbers=OldStyle]{Palatino nova W1G}
+  \setsansfont{Palatino Sans Com}
+  \setmathfont{texgyrepagella-math.otf}
+  % The set difference symbol is not available in TG Pagella. It's actually
+  % pretty rare.
+  \setmathfont[range=\setminus]{CambriaMath.ttf}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage{newpxtext}
+  \usepackage{eulerpx}
+\fi
+
+\setlength\parindent{18pt}
+\usepackage{setspace}
+\setstretch{1.2}
+\usepackage[protrusion=basicmath,tracking=false]{microtype}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\setlist{noitemsep}  % tighter lists
+\usepackage{braket}
+\usepackage{mleftright}
+\mleftright
+
+% recalculate DIV.
+\KOMAoption{DIV}{last}
+
+% Don't do bold sections.
+\setkomafont{disposition}{\normalfont}
+
+% Lining figures when useful.
+\ifluatex
+  \addtokomafont{partentrypagenumber}{\addfontfeatures{Numbers=Lining}}
+  \addtokomafont{sectionentrypagenumber}{\addfontfeatures{Numbers=Lining}}
+\fi
+
+\ifdefined\isdraftmode
+  \ifluatex
+    \edef\pdfcompresslevel{\pdfvariable compresslevel}
+    \edef\pdfobjcompresslevel{\pdfvariable objcompresslevel}
+  \fi
+  \pdfcompresslevel=0
+  \pdfobjcompresslevel=0
+\else
+  \usepackage{color}
+  \definecolor{NiceBlue}{rgb}{0.25, 0.31, 0.70}
+  \usepackage[
+    unicode, pdfusetitle, colorlinks,
+    allcolors=NiceBlue
+  ]{hyperref}
+\fi
+
+% Has to be after hyperref.
+\usepackage[nameinlink,noabbrev]{cleveref}
+% No parens in equation reference.
+\creflabelformat{equation}{#2#1#3}
+% No section numbers.
+\setcounter{secnumdepth}{-9}
+
+\makeatletter
+% Custom title
+\newcommand*\makealttitle[0]{%
+  \begin{center}
+    {\usekomafont{title}\LARGE \@title\\}
+    \vspace{0.5em}
+    {\usekomafont{author}\normalsize\itshape \@author\\}
+  \end{center}
+  \suppressfloats[t]%
+}
+\makeatother
+
+% More space for figures.
+\renewcommand*\bottomfraction{0.6}
+
+\input _math
