@@ -1,11 +1,11 @@
 # All my functions.
 
 rejpeg() {
-    if [ $# -eq 0 ]; then
+    if [[ $# -eq 0 ]]; then
         echo >&2 "No file name given."
         return 1
     fi
-    if ! magick identify -format "%[profile:icc]" "$1" |&
+    if ! identify -format "%[profile:icc]" "$1" |&
         grep --fixed-strings "unknown image prop" >/dev/null; then
         echo "Image has embedded profile, so we are saving all metadata..." >&2
         jpegtran -copy all -outfile "${1%.*}-compressed.jpeg" "$1"
@@ -15,7 +15,7 @@ rejpeg() {
 }
 
 n() {
-    if [ "${NNNLVL:-0}" -ne 0 ]; then
+    if [[ "${NNNLVL:-0}" -ne 0 ]]; then
         echo "nnn is already running"
         return
     fi
@@ -24,25 +24,29 @@ n() {
 
     NNN_TRASH=1 nnn -eo "$@"
 
-    if [ -f "$NNN_TMPFILE" ]; then
-        . "$NNN_TMPFILE"
-        rm -f -- "$NNN_TMPFILE" >/dev/null
+    if [[ -f "${NNN_TMPFILE}" ]]; then
+        . "${NNN_TMPFILE}"
+        rm -f -- "${NNN_TMPFILE}" >/dev/null
     fi
 }
 
 cl() {
     cd "$1" && ls
 }
-complete -d cl
+__load_completion cd
+complete -o nospace -F _comp_cmd_cd cl
 
 shellescape() {
     printf %s\\n "$1" | sed "s/'/'\\\\''/g;1s/^/'/;\$s/\$/'/"
 }
 
 school() {
-    spot="$(cd ~/Documents/syncthing/current_work && find . -type d |
-        fzf --exact --height 50% --layout reverse)"
-    cd ~/Documents/syncthing/current_work/"$spot"
+    local root="${HOME}/Documents/syncthing/current_work"
+    local subdir="$(fd --type d --base-directory "${root}" | fzf --reverse)"
+    if [[ -z ${subdir} ]]; then
+        return
+    fi
+    cd "${root}/${subdir}"
 }
 
 timepdf() {
@@ -55,14 +59,14 @@ timepdf() {
 }
 
 abs() {
-    if [ $# -ne 1 ]; then
+    if [[ $# -ne 1 ]]; then
         echo >&2 "No program given."
         return 1
     fi
 
     possible_program="$(command -v "$1")"
 
-    if [ "$(printf %.1s "$possible_program")" != "/" ]; then
+    if [[ "$(printf %.1s "$possible_program")" != "/" ]]; then
         echo "$possible_program"
         return 0
     fi

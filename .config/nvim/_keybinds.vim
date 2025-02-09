@@ -28,6 +28,9 @@ xnoremap <leader>p "+p
 nnoremap <leader>P "+P
 xnoremap <leader>P "+P
 
+" To allow Kitty to open links, temporarily disable mouse support by holding shift while
+" clicking.
+
 " Get the syntax group of under the cursor.
 nnoremap <F10> <cmd>echo synIDattr(synID(line('.'), col('.'), 1), 'name')<CR>
 
@@ -46,9 +49,6 @@ nnoremap <silent> <leader>cd <cmd>cd %:p:h<cr>
 
 " Make escape on terminal easier to press.
 tnoremap <c-x> <c-\><c-n>
-
-" When at the end of a word press <c-u> to uppercase it.
-inoremap <c-u> <esc>mzgUiw`za
 
 noremap h <nop>
 noremap l <nop>

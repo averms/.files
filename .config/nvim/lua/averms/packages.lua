@@ -2,22 +2,10 @@
 -- The beginning of my config in Lua.
 --
 
--- Set up mini.deps
-
-local mini_path = vim.fn.stdpath "data" .. "/site/pack/deps/start/mini.nvim"
-
-if not vim.loop.fs_stat(mini_path) then
-    vim.cmd 'echo "Setting up mini.nvim" | redraw'
-    local clone_cmd = {
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/echasnovski/mini.nvim",
-        mini_path,
-    }
-    vim.fn.system(clone_cmd)
-    vim.cmd "packadd mini.nvim | helptags ALL"
-end
+--[[
+git clone --filter=blob:none https://github.com/echasnovski/mini.nvim.git \
+    ~/.local/share/nvim/site/pack/deps/start/mini.nvim
+--]]
 
 require("mini.deps").setup()
 local add = function(spec)
@@ -26,8 +14,13 @@ end
 
 -- Simple plugins
 
+require("mini.ai").setup()
+
 require("mini.align").setup()
 
+require("mini.comment").setup()
+
+-- Copy tpope keybinds
 require("mini.surround").setup {
     mappings = {
         add = "ys",
@@ -42,6 +35,8 @@ require("mini.surround").setup {
         suffix_next = "",
     },
 }
+vim.keymap.del('x', 'ys')
+vim.keymap.set("x", "S", [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
 
 require("mini.operators").setup {
     exchange = { prefix = "cx" },
@@ -50,11 +45,6 @@ require("mini.operators").setup {
     replace = { prefix = "" },
     sort = { prefix = "" },
 }
-
-add "averms-forks/xdg_open.vim"
-if vim.fn.has "mac" == 1 then
-    vim.g.xdg_open_command = "open"
-end
 
 add "justinmk/vim-dirvish"
 vim.g.dirvish_mode = 2
@@ -113,59 +103,19 @@ end
 
 -- Fancy LSP plugins
 
-add {
-    source = "hrsh7th/nvim-cmp",
-    depends = {
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-nvim-lsp",
-    },
-}
-local cmp = require "cmp"
-cmp.setup {
-    snippet = nil,
-
-    sources = cmp.config.sources {
-        { name = "nvim_lsp" },
-        { name = "path" },
-    },
-
-    mapping = {
-        ["<C-n>"] = function(fallback)
-            cmp.select_next_item { behavior = cmp.SelectBehavior.Select }
-        end,
-        ["<C-p>"] = function(fallback)
-            cmp.select_prev_item { behavior = cmp.SelectBehavior.Select }
-        end,
-        ["<Tab>"] = function(fallback)
-            if cmp.visible() then
-                cmp.confirm { select = true }
-            else
-                fallback()
-            end
-        end,
-        ["<C-Space>"] = function(fallback)
-            cmp.complete()
-        end,
-    },
-}
-
 add "neovim/nvim-lspconfig"
 local lspconfig = require "lspconfig"
 
-local full_capabilities = vim.tbl_deep_extend(
-    "force",
-    vim.lsp.protocol.make_client_capabilities(),
-    require("cmp_nvim_lsp").default_capabilities()
-)
+local full_capabilities = vim.lsp.protocol.make_client_capabilities()
 full_capabilities.textDocument.completion.completionItem.snippetSupport = false
 
-lspconfig.clangd.setup {
-    cmd = { "clangd", "--header-insertion=never" },
-    capabilities = full_capabilities,
-}
-lspconfig.rust_analyzer.setup {
-    capabilities = full_capabilities,
-}
+-- lspconfig.clangd.setup {
+--     cmd = { "clangd", "--header-insertion=never" },
+--     capabilities = full_capabilities,
+-- }
+-- lspconfig.rust_analyzer.setup {
+--     capabilities = full_capabilities,
+-- }
 
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("user_lsp_config", { clear = true }),

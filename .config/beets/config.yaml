@@ -5,6 +5,7 @@ per_disc_numbering: true
 import:
   languages: en
   from_scratch: true
+  reflink: auto
 paths:
   default: "$albumartist/$album%aunique{} ($year)/$disc.$track - $title"
   singleton: "!non-album/$artist/$title"
@@ -20,23 +21,35 @@ plugins:
 zero:
   auto: true
   keep_fields:
-    [title, artist, album, albumartist, art, comment, performer, composer,
-     year, disc, disctotal, track, tracktotal, genre, mb_albumid]
+    - title
+    - artist
+    - album
+    - albumartist
+    - comment
+    - performer
+    - composer
+    - year
+    - disc
+    - disctotal
+    - track
+    - tracktotal
+    - genre
+    - mb_albumid
   update_database: true
 musicbrainz:
   user: dnakememester
   pass: get password from manager
 mbcollection:
-  collection: '01152f50-f42d-4467-8924-0a1bf5f2bd45'
+  collection: "01152f50-f42d-4467-8924-0a1bf5f2bd45"
 convert:
   copy_album_art: true
   never_convert_lossy_files: true
   format: flac
-  dest: "~/Desktop/music"
+  dest: "~/Music/lossy"
   formats:
-    opus: /home/anon/Code/scripts/toopus.sh $source $dest
+    opus: toopus $source $dest
     aac:
-      command: /home/anon/Code/scripts/toaac.sh $source $dest
+      command: toaac $source $dest
       extension: m4a
 fetchart:
   cautious: true

@@ -1,0 +1,9 @@
+{
+    "ui.featureMap.enable": false,
+    "ui.view.symbols.showImports": false,
+    "ui.view.linear.il": "Disassembly",
+    "ui.font.view.size": 10,
+    "ui.files.detection.database": "always",
+    "ui.font.antialiasing": "hidpi",
+    "ui.font.app.size": 10
+}

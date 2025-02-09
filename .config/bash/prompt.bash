@@ -1,5 +1,3 @@
-source ~/Code/other/gitstatus/gitstatus.plugin.sh
-
 PROMPT_DIRTRIM=2
 
 __my_prompt() {
@@ -57,6 +55,6 @@ __my_prompt() {
 }
 
 # Start gitstatusd in the background.
-gitstatus_stop && gitstatus_start -s -1 -u -1 -c -1 -d -1
+gitstatus_stop && gitstatus_start
 
 PROMPT_COMMAND[0]=__my_prompt

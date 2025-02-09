@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+
+if [ "$DOTFILES_HOST" = "linux" ]; then
+    exec ~/.local/opt/quarto/bin/tools/x86_64/pandoc "$@"
+else
+    exec /Applications/quarto/bin/tools/pandoc "$@"
+fi

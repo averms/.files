@@ -1,7 +1,7 @@
 [core]
 	autocrlf = input
 [gpg]
-	; format = ssh
+	format = ssh
 [rebase]
 	updaterefs = true
 [rerere]
@@ -14,7 +14,6 @@
 	sdiff = diff --staged
 	brls = branch --all
 	ec = config --global -e
-	co = checkout
 	s = status
 	u = restore
 	cm = commit
@@ -33,3 +32,7 @@
 	trustexitcode = true
 [include]
 	path = me
+[includeif "gitdir:~/Code/non/"]
+	path = non_me
+[includeif "gitdir:~/Code/work/"]
+	path = work_me

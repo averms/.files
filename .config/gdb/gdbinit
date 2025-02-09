@@ -1,6 +1,16 @@
+set debuginfod enabled on
+
 set confirm off
+set disable-randomization off
+set disassembly-flavor intel
+set follow-exec-mode new
+set follow-fork-mode parent
 set pagination off
 set print array on
 set print pretty on
 set print vtbl on
-set debuginfod enabled on
+
+# set show-compact-regs on
+# set show-flags on
+# set syntax-highlight-style default
+# set telescope-skip-repeating-val off

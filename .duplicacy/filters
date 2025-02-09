@@ -1,12 +1,11 @@
 # excluded files
 -var/home/anon/.TinyTeX/*
 -var/home/anon/.cache/*
--var/home/anon/.config/Code/Cache/*
 -var/home/anon/.config/google-chrome/*
 -var/home/anon/.cpanm/*
--var/home/anon/.local/opt/games/*
 -var/home/anon/.local/opt/ides/*
--var/home/anon/.local/opt/quarto/*
+-var/home/anon/.local/opt/jdks/*
+-var/home/anon/.local/opt/zig/*
 -var/home/anon/.local/share/Trash/*
 -var/home/anon/.local/share/containers/*
 -var/home/anon/.local/share/go/*
@@ -16,13 +15,14 @@
 -var/home/anon/.local/share/torbrowser/*
 -var/home/anon/.local/share/uv/*
 -var/home/anon/.m2/*
--var/home/anon/.mozilla/*
 -var/home/anon/.rustup/*
 -var/home/anon/.var/app/*/cache/*
 -var/home/anon/.var/app/com.valvesoftware.Steam/*
 -var/home/anon/.vscode/*
 -var/home/anon/.zoom/*
 -var/home/anon/.zotero/*
+
+-var/home/anon/Code/my/verms-os/output/*
 
 # no node_modules or Python virtual envs
 -*/node_modules/*
@@ -33,7 +33,6 @@
 +etc/firewalld/*
 +etc/NetworkManager/*
 +etc/libvirt/*
-+etc/systemd/*
 +var/
 +var/home/
 +var/home/anon/*

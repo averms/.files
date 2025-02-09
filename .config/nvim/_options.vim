@@ -27,9 +27,6 @@ augroup fix_cursor
     autocmd VimLeave * set guicursor=a:hor20
 augroup END
 
-" set up language-agnostic find path
-set path=.,
-
 " set up the wild menu
 set wildignorecase
 set wildmode=list:longest,full

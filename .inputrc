@@ -1,10 +1,13 @@
 # Tab will show all completions instead of blocking just like in Zsh.
 set show-all-if-ambiguous on
+
 # I'm not gonna lie, I've tested this and it doesn't seem to change anything. I
 # have it on because I am a cargo culter.
 set skip-completed-text on
+
 # Keep history clean.
 set revert-all-at-newline on
+
 # Other stuff for completions.
 set completion-ignore-case on
 set mark-directories on
@@ -20,3 +23,4 @@ set keyseq-timeout 100
 
 TAB: menu-complete
 "\e[Z": menu-complete-backward
+"\C-s": nop

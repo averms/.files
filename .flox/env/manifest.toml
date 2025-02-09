@@ -1,0 +1,66 @@
+version = 1
+
+[install]
+age.pkg-path = "age"
+b3sum.pkg-path = "b3sum"
+bash-completion.pkg-path = "bash-completion"
+cloc.pkg-path = "cloc"
+# cpdf.pkg-path = "ocamlPackages.cpdf"
+dua.pkg-path = "dua"
+duckdb.pkg-path = "duckdb"
+duplicacy.pkg-path = "duplicacy"
+fd.pkg-path = "fd"
+fdk-aac-encoder.pkg-path = "fdk-aac-encoder"
+flac.pkg-path = "flac"
+fzf.pkg-path = "fzf"
+# TODO: change to gitFull when it doesn't have to be built from source.
+git.pkg-path = "git"
+hyperfine.pkg-path = "hyperfine"
+iperf3.pkg-path = "iperf3"
+jq.pkg-path = "jq"
+lazygit.pkg-path = "lazygit"
+magic-wormhole-rs.pkg-path = "magic-wormhole-rs"
+mat2.pkg-path = "mat2"
+mediainfo.pkg-path = "mediainfo"
+# we prefer GNU parallel to this parallel
+moreutils = { pkg-path = "moreutils", priority = 10 }
+neovim.pkg-path = "neovim"
+nnn.pkg-path = "nnn"
+numbat.pkg-path = "numbat"
+opusTools.pkg-path = "opusTools"
+oxipng.pkg-path = "oxipng"
+parallel.pkg-path = "parallel"
+python313 = { pkg-path = "python313", systems = ["aarch64-darwin"] }
+qpdf.pkg-path = "qpdf"
+qrencode.pkg-path = "qrencode"
+quartoMinimal.pkg-path = "quartoMinimal"
+ripgrep.pkg-path = "ripgrep"
+rsgain.pkg-path = "rsgain"
+sox.pkg-path = "sox"
+tinyxxd = { pkg-path = "tinyxxd", systems = ["aarch64-linux", "x86_64-linux"] }
+tree.pkg-path = "tree"
+yj.pkg-path = "yj"
+
+# Programming
+clang-tools.pkg-path = "clang-tools"
+go.pkg-path = "go"
+mold.pkg-path = "mold"
+ruff.pkg-path = "ruff"
+rustup.pkg-path = "rustup"
+shellcheck.pkg-path = "shellcheck"
+shfmt.pkg-path = "shfmt"
+stylua.pkg-path = "stylua"
+uv.pkg-path = "uv"
+zstd.pkg-path = "zstd"
+
+[vars]
+
+[hook]
+
+[profile]
+
+[services]
+
+[options]
+allow.unfree = true
+systems = ["aarch64-darwin", "aarch64-linux", "x86_64-linux"]
