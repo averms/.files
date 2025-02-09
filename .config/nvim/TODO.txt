@@ -1,1 +1,0 @@
-- Look at kickstart.nvim for inspiration but skip the treesitter stuff.
