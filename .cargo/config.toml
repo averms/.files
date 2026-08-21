@@ -1,0 +1,5 @@
+[target.'cfg(target_os = "linux")']
+rustflags = ["-Clink-arg=-fuse-ld=mold", "-Ctarget_cpu=x86-64-v3"]
+
+[build]
+build-dir = "{cargo-cache-home}/build/{workspace-path-hash}"

@@ -1,0 +1,20 @@
+[Unit]
+Description=Serve WebDAV with rclone
+
+[Service]
+Type=exec
+WorkingDirectory=/
+ExecStart=/home/linuxbrew/.linuxbrew/bin/rclone serve webdav --addr %l.caracal-sole.ts.net:34104 --dir-cache-time 1s .
+SuccessExitStatus=143
+
+MemoryDenyWriteExecute=true
+NoNewPrivileges=true
+RestrictAddressFamilies=AF_INET AF_INET6
+RestrictNamespaces=true
+RestrictRealtime=true
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources @mount @clock @cpu-emulation @obsolete @debug
+
+[Install]
+WantedBy=default.target

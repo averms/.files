@@ -1,0 +1,10 @@
+\defaultfontfeatures[CenturySupraSpec]{
+  Extension       = .otf,
+  UprightFont     = century_supra_t3_regular,
+  UprightFeatures = { SmallCapsFont = century_supra_c3_regular },
+  ItalicFont      = century_supra_t3_italic,
+  BoldFont        = century_supra_t3_bold,
+  BoldFeatures    = { SmallCapsFont = century_supra_c3_bold },
+  BoldItalicFont  = century_supra_t3_bold_italic,
+}
+% vim: ft=tex

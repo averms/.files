@@ -1,0 +1,51 @@
+[core]
+	autocrlf = false
+[feature]
+	manyFiles = true
+[column]
+	ui = auto
+[tag]
+	sort = version:refname
+[gpg]
+	format = ssh
+[rebase]
+	updateRefs = true
+[rerere]
+	enabled = true
+	autoUpdate = true
+[fetch]
+	prune = true
+[pull]
+	rebase = true
+[push]
+	autoSetupRemote = true
+	followTags = true
+[init]
+	defaultBranch = trunk
+[merge]
+	tool = nvimdiff2
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	tool = nvimdiff
+	wsErrorHighlight = all
+[alias]
+	b = branch
+	brls = branch --all
+	cm = commit --all
+	ec = config --global -e
+	fpush = push --force-with-lease
+	lg = log --oneline --graph --all
+	s = status --short --branch
+	sdiff = diff --staged
+	u = restore
+	# list all branches with unpushed commits.
+	lc = for-each-ref --format='%(refname:short) %(push:track)' refs/heads
+[tar "tar.zst"]
+	command = zstdmt -q -6
+[include]
+	path = me
+[includeif "gitdir:~/Code/notmy/"]
+	path = not_me
+[includeif "gitdir:~/Code/work/"]
+	path = work_me

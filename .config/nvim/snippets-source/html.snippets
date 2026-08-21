@@ -1,0 +1,37 @@
+extends xml
+
+snippet html5
+	<!DOCTYPE html>
+	<html lang="${1:en}">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>${2}</title>
+	</head>
+	<body>
+		${0}
+	</body>
+	</html>
+
+snippet ahref
+	<a href="${1}">${0:VISUAL}</a>
+
+snippet ul
+	<ul>
+		<li>${0:VISUAL}
+	</ul>
+
+snippet ol
+	<ol>
+		<li>${0:VISUAL}
+	</ol>
+
+snippet li
+	<li>${1:VISUAL}
+
+snippet dl
+	<dl>
+		<dt>${1}
+		<dd>${2}
+		${0}
+	</dl>

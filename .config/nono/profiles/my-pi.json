@@ -1,0 +1,32 @@
+{
+  "$schema": "../schema.json",
+  "extends": "nolabs-ai/pi",
+  "meta": {
+    "name": "my-pi"
+  },
+  "filesystem": {
+    "allow": [
+      "/tmp",
+      "/var/tmp",
+      "~/.config/pi",
+      "~/.local/share/go",
+      "~/.local/share/uv",
+      "~/.local/state/nvim"
+    ],
+    "read": [
+      "~/.config/gh",
+      "~/.config/git",
+      "~/.config/jj",
+      "~/.config/npm",
+      "~/.config/nvim",
+      "~/.local/share/nvim"
+    ],
+    "write": []
+  },
+  "network": {
+    "credentials": ["github"]
+  },
+  "workdir": {
+    "access": "readwrite"
+  }
+}

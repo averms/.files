@@ -1,0 +1,45 @@
+% Copy this: \def\isdraftmode{1}
+
+\ifdefined\isdraftmode
+  \documentclass[draft]{scrartcl}
+\else
+  \documentclass{scrartcl}
+\fi
+\KOMAoptions{
+  paper=letter,
+  fontsize=12pt,
+  abstract=false,
+  parskip=false,
+  BCOR=0pt,
+  DIV=calc
+}
+\usepackage{iftex}
+
+% Font stuff.
+\ifluatex
+  \usepackage{unicode-math}
+  % Set up so all fonts other than main font scale to match it.
+  % Order matters! Main font should be first.
+  \defaultfontfeatures{Scale=MatchLowercase}
+  % TeX ligatures should always be enabled. Common if the font supports it.
+  \defaultfontfeatures[\rmfamily]{Ligatures={TeX,Common},Scale=1}
+  \setmainfont{Sitka}[
+    SizeFeatures={
+      {Size = -9.5,      Font = Sitka Small},
+      {Size = 9.5-13.5,  Font = Sitka Text},
+      {Size = 13.5-18.5, Font = Sitka Subheading},
+      {Size = 18.5-23.5, Font = Sitka Heading},
+      {Size = 23.5-27.5, Font = Sitka Display},
+      {Size = 27.5-,     Font = Sitka Banner}
+    }
+  ]
+  \setsansfont{Noto Sans}
+  \setmathfont{CambriaMath.ttf}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage{newtxtext}
+  \usepackage{newtxmath}
+\fi
+
+\input _settings
+\input _math

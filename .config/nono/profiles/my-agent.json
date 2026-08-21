@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "name": "my-agent"
+  },
+  "security": {
+    "groups": []
+  },
+  "workdir": {
+    "access": "readwrite"
+  },
+  "filesystem": {
+    "allow": ["~/.pi", "~/.config/jj", "~/.cache", "~/.agents", "~/.local/state/nvim", "~/.local/share/uv", "/var/tmp"],
+    "read": ["~/.local/bin", "~/.local/share", "~/.config"]
+  }
+}

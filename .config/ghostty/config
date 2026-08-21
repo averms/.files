@@ -1,0 +1,11 @@
+cursor-style = underline
+font-family = Input Mono Narrow
+font-synthetic-style = false
+shell-integration-features = no-title
+theme = Catppuccin Latte
+window-vsync = false
+# increase scrollback to 50 MB
+scrollback-limit = 50_000_000
+
+config-file = ?macos
+config-file = ?linux

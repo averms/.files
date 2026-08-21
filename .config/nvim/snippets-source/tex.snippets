@@ -1,0 +1,101 @@
+extends plaintex
+
+snippet beg
+	\begin{${1}}
+		${0:VISUAL}
+	\end{$1}
+
+snippet tbl
+	\begin{table}
+		\centering
+		\begin{tabular}{${3}}
+			\toprule
+			${0}
+			\midrule
+			\bottomrule
+		\end{tabular}
+		\caption{${1}} \label{tbl:${2}}
+	\end{table}
+
+snippet fig
+	\begin{figure}
+		\centering
+		\includegraphics[${3}]{${4:FILENAME}}
+		\caption{${1}} \label{fig:${2}}
+	\end{figure}
+
+snippet 2fig
+	\begin{figure}
+		\centering
+		\subcaptionbox{${3:SUBCAPTION 1}[.45\linewidth]
+			{\includegraphics[width=\linewidth]{${4:FILENAME 1}}
+		\subcaptionbox{${5:SUBCAPTION 2}[.45\linewidth]
+			{\includegraphics[width=\linewidth]{${6:FILENAME 2}}
+		\caption{${1}} \label{fig:${2}}
+	\end{figure}
+
+snippet dm
+	\begin{equation*}
+		${1:VISUAL}
+	\end{equation*}
+
+snippet ((
+	\left(${1:VISUAL}\right)
+
+snippet [[
+	\left[${1:VISUAL}\right]
+
+snippet {{
+	\left\{${1:VISUAL}\right\}
+
+snippet ff
+	\frac{${1}}{${2}}
+
+snippet ita
+	\textit{${1:VISUAL}}
+
+snippet bf
+	\textbf{${1:VISUAL}}
+
+snippet under
+	\underline{${1:VISUAL}}
+
+snippet sc
+	\textsc{${1:VISUAL}}
+
+snippet sf
+	\textsf{${1:VISUAL}}
+
+snippet q
+	\enquote{${1:VISUAL}}
+
+snippet dl
+	\begin{description}
+		\item[${1}] ${0}
+	\end{description}
+
+snippet ol
+	\begin{enumerate}
+		\item ${0:VISUAL}
+	\end{enumerate}
+
+snippet ul
+	\begin{itemize}
+		\item ${0:VISUAL}
+	\end{itemize}
+
+snippet abs "Absolute value" i
+	\abs{${1:VISUAL}}
+
+# Sections
+snippet sec "Section" b
+	\section{${1}}
+	${0}
+
+snippet sub "Subsection" b
+	\subsection{${1}}
+	${0}
+
+snippet ssub "Subsubsection" b
+	\subsubsection{${1}}
+	${0}

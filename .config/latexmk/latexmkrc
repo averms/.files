@@ -1,0 +1,11 @@
+# vim: ft=perl
+
+# 1 means pdflatex
+$pdf_mode = 1;
+$silent = 1;
+$clean_ext = "xdv";
+$out_dir = 'build';
+@default_files = ();
+# Give out errors in a format Vim recognizes, halt on first error, and don't request
+# input after error (just exit).
+set_tex_cmds('%O -file-line-error -halt-on-error -interaction=nonstopmode %S');

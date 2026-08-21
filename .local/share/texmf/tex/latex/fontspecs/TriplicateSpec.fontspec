@@ -1,0 +1,10 @@
+\defaultfontfeatures[TriplicateSpec]{
+  Extension       = .ttf,
+  UprightFont     = triplicate_t3_regular,
+  UprightFeatures = { SmallCapsFont = triplicate_c3_regular },
+  ItalicFont      = triplicate_t3_italic,
+  BoldFont        = triplicate_t3_bold,
+  BoldFeatures    = { SmallCapsFont = triplicate_c3_bold },
+  BoldItalicFont  = triplicate_t3_bold_italic,
+}
+% vim: ft=tex

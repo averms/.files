@@ -1,0 +1,10 @@
+\defaultfontfeatures[ValkyrieSpec]{
+  Extension       = .otf,
+  UprightFont     = valkyrie_t3_regular,
+  UprightFeatures = { SmallCapsFont = valkyrie_c3_regular },
+  ItalicFont      = valkyrie_t3_italic,
+  BoldFont        = valkyrie_t3_bold,
+  BoldFeatures    = { SmallCapsFont = valkyrie_c3_bold },
+  BoldItalicFont  = valkyrie_t3_bold_italic,
+}
+% vim: ft=tex

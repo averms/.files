@@ -1,0 +1,49 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "sqlglot[c]",
+# ]
+# ///
+
+import argparse
+import sys
+
+import sqlglot
+from sqlglot.dialects import DIALECTS
+
+parser = argparse.ArgumentParser(
+    description="Format SQL from stdin using sqlglot",
+)
+parser.add_argument(
+    "--dialect",
+    type=str,
+    default=None,
+    choices=[d.lower() for d in DIALECTS],
+    help="SQL dialect to use for reading",
+)
+
+args = parser.parse_args()
+
+sql = sys.stdin.read().strip()
+if not sql:
+    sys.exit("Error: no SQL input provided")
+
+try:
+    formatted = sqlglot.transpile(
+        sql,
+        read=args.dialect,
+        pretty=True,
+        normalize=True,
+        normalize_functions="lower",
+        max_text_width=88,
+        indent=4,
+        comments=True,
+    )
+
+    for statement in formatted:
+        print(statement)
+except sqlglot.ParseError as e:
+    sys.exit(f"Parse error: {e}\n")
+except Exception as e:
+    sys.exit(f"Error: {e}\n")

@@ -1,0 +1,25 @@
+# For C99 or C++11 or later.
+Language: Cpp
+BasedOnStyle: LLVM
+
+AccessModifierOffset: -4
+AlignAfterOpenBracket: BlockIndent
+AllowShortFunctionsOnASingleLine: None
+BinPackArguments: false
+BinPackParameters: false
+ColumnLimit: 88
+IndentWidth: 4
+PointerAlignment: Right
+IncludeCategories:
+  # local include
+  - Regex: '^"'
+    Priority: 1
+  # testing
+  - Regex: "^<(catch2|picotest)"
+    Priority: 2
+  # at least one slash.
+  - Regex: "^<[^/]+/"
+    Priority: 3
+  # no slashes, maybe libc
+  - Regex: "^<"
+    Priority: 4

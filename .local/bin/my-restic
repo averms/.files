@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+
+export RESTIC_FEATURES="device-id-for-hardlinks=true"
+export RESTIC_REPOSITORY="/media/anon/Sarouyeh/backups/restic"
+export RESTIC_PACK_SIZE=64
+
+exec restic "$@"

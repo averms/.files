@@ -1,0 +1,51 @@
+[
+  {
+    "bindings": {
+      ":": "vim::RepeatFind",
+      "space space": "pane::AlternateFile"
+    },
+    "context": "VimControl && !menu"
+  },
+  {
+    "bindings": {
+      "shift-s": "vim::PushAddSurrounds"
+    },
+    "context": "vim_mode == visual && !VimWaiting && !VimObject"
+  },
+  {
+    "bindings": {
+      ";": "command_palette::Toggle"
+    },
+    "context": "vim_mode == normal || vim_mode == visual"
+  },
+  {
+    "bindings": {
+      ";": "command_palette::Toggle"
+    },
+    "context": "ChangesList || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || Welcome"
+  },
+  {
+    "bindings": {
+      ";": "command_palette::Toggle"
+    },
+    "context": "ProjectPanel && not_editing"
+  },
+  {
+    "bindings": {
+      ";": "vim::CountCommand"
+    },
+    "context": "VimControl && VimCount"
+  },
+  {
+    "bindings": {
+      "enter": "editor::Newline"
+    },
+    "context": "Editor && showing_completions"
+  },
+  {
+    "bindings": {
+      "ctrl-e": ["editor::MoveToEndOfLine", { "stop_at_soft_wraps": false }]
+    },
+    "context": "Editor"
+  }
+]

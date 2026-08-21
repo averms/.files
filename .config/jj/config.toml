@@ -1,0 +1,70 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[ui]
+default-command = "status"
+pager = ":builtin"
+diff-editor = ":builtin"
+merge-editor = "meld"
+
+[snapshot]
+auto-track = "none()"
+
+[diff.color-words]
+max-inline-alternation = 1
+
+[colors]
+# TODO: this looks ugly
+"diff token" = { underline = false, reverse = true }
+
+[templates]
+log = 'builtin_log_oneline ++ "\n"'
+git_push_bookmark = '"averms/" ++ slugify(description) ++ "/" ++ change_id.short()'
+
+[template-aliases]
+"format_short_change_id(id)" = "id.shortest(2)"
+# Just first name
+"format_short_signature_oneline(s)" = "s.name().replace(regex:' [^ ]*$', '')"
+"format_timestamp(t)" = 't.local().format("%Y-%m-%d %H:%M")'
+
+"slugify(str)" = '''
+  truncate_end(
+    25,
+    str.first_line()
+      .replace(regex:'[^[[:alnum:]].]', '-')
+      .replace(regex:'-{2,}', '-')
+      .replace(regex:'\.{2,}', '.')
+      .replace(regex:'(^-+|-+$)', '')
+      .lower()
+  )
+'''
+
+[git]
+private-commits = "subject('private:*')"
+
+[revsets]
+bookmark-advance-to = "@-"
+
+[aliases]
+t = ["file", "track"]
+newstack = [
+  "new",
+  "--no-edit",
+  "-A",
+  "trunk()",
+  "-B",
+  "description('private: megamerge\n')",
+  "-m",
+]
+yay = [
+  "rebase",
+  "--skip-emptied",
+  "--simplify-parents",
+  "-s",
+  "roots(trunk()..) & mutable()",
+  "-d",
+  "trunk()"
+]
+vine = ["util", "exec", "--", "jj-vine"]
+
+[jj-vine.description]
+sync = true

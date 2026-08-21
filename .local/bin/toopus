@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+
+if [ $# -ne 2 ]; then
+    exit 1
+fi
+
+sox -G "$1" --comment '' -t wav - rate -v 48k |
+    opusenc --ignorelength --bitrate 160 - "$2"

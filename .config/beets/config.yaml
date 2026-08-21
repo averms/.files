@@ -1,0 +1,48 @@
+directory: /media/anon/Sarouyeh/data/important/media/beets-library
+library: /media/anon/Sarouyeh/data/important/media/beets-library/library.db
+original_date: true
+per_disc_numbering: true
+import:
+  languages: en
+  from_scratch: true
+  reflink: auto
+paths:
+  default: "$albumartist/$album%aunique{} ($year)/$disc.$track - $title"
+  singleton: "!non-album/$artist/$title"
+  comp: "!compilations/$album%aunique{} ($year)/$disc.$track - $title"
+plugins:
+  - musicbrainz
+  - convert
+  - info
+  - fetchart
+  - filetote
+  - badfiles
+  - mbcollection
+musicbrainz:
+  user: dnakememester
+  pass: get password from manager
+mbcollection:
+  collection: "01152f50-f42d-4467-8924-0a1bf5f2bd45"
+convert:
+  copy_album_art: true
+  embed: false
+  never_convert_lossy_files: true
+  format: flac
+  dest: "~/Music/lossy"
+  formats:
+    opus: toopus $source $dest
+    aac:
+      command: toaac $source $dest
+      extension: m4a
+fetchart:
+  cautious: true
+  sources: [filesystem]
+filetote:
+  patterns:
+    extra:
+      - "[sS]cans/"
+      - "[aA]rtwork/"
+      - "[aA]rt/"
+      - "extra/"
+  paths:
+    pattern:extra: $albumpath/extra/$old_filename

@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "types": ["node"],
+
+    // Extensions import each other with explicit ".ts" extensions (jiti resolves
+    // those at runtime), which TS only allows when it never emits.
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+
+    // Resolve @types/node from the pi install.
+    "typeRoots": [
+      "/opt/homebrew/opt/pi-coding-agent/libexec/lib/node_modules/@earendil-works/pi-coding-agent/node_modules/@types",
+      "/home/linuxbrew/.linuxbrew/opt/pi-coding-agent/libexec/lib/node_modules/@earendil-works/pi-coding-agent/node_modules/@types"
+    ],
+
+
+    // pi aliases these bare specifiers to its own installed copy at runtime , so
+    // resolve types from the installed pi package.
+    "paths": {
+      "@earendil-works/pi-coding-agent": [
+        "/opt/homebrew/opt/pi-coding-agent/libexec/lib/node_modules/@earendil-works/pi-coding-agent",
+        "/home/linuxbrew/.linuxbrew/opt/pi-coding-agent/libexec/lib/node_modules/@earendil-works/pi-coding-agent"
+      ],
+      "@earendil-works/*": [
+        "/opt/homebrew/opt/pi-coding-agent/libexec/lib/node_modules/@earendil-works/pi-coding-agent/node_modules/@earendil-works/*",
+        "/home/linuxbrew/.linuxbrew/opt/pi-coding-agent/libexec/lib/node_modules/@earendil-works/pi-coding-agent/node_modules/@earendil-works/*"
+      ],
+      "typebox": [
+        "/opt/homebrew/opt/pi-coding-agent/libexec/lib/node_modules/@earendil-works/pi-coding-agent/node_modules/typebox",
+        "/home/linuxbrew/.linuxbrew/opt/pi-coding-agent/libexec/lib/node_modules/@earendil-works/pi-coding-agent/node_modules/typebox"
+      ],
+      "typebox/*": [
+        "/opt/homebrew/opt/pi-coding-agent/libexec/lib/node_modules/@earendil-works/pi-coding-agent/node_modules/typebox/*",
+        "/home/linuxbrew/.linuxbrew/opt/pi-coding-agent/libexec/lib/node_modules/@earendil-works/pi-coding-agent/node_modules/typebox/*"
+      ]
+    }
+  },
+  "include": ["extensions/**/*.ts"]
+}

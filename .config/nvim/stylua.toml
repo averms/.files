@@ -1,0 +1,8 @@
+call_parentheses = "None"
+column_width = 88
+indent_type = "Spaces"
+indent_width = 2
+syntax = "LuaJIT"
+
+[sort_requires]
+enabled = true

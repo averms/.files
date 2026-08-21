@@ -1,0 +1,153 @@
+{
+  "agent": {
+    "default_model": {
+      "model": "gemini-2.5-pro",
+      "provider": "copilot_chat"
+    },
+    "model_parameters": []
+  },
+  "autosave": "on_focus_change",
+  "buffer_font_family": "Input Sans Narrow",
+  "buffer_font_size": 13,
+  "buffer_line_height": {
+    "custom": 1.4
+  },
+  "colorize_brackets": false,
+  "edit_predictions": {
+    "mode": "eager"
+  },
+  "features": {
+    "edit_prediction_provider": "none"
+  },
+  "file_types": {
+    "yaml": [".clang-format", ".clang-tidy"]
+  },
+  "format_on_save": "off",
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "hover_popover_enabled": false,
+  "inlay_hints": {
+    "enabled": true,
+    "show_parameter_hints": false
+  },
+  "languages": {
+    "CSS": {
+      "tab_size": 2
+    },
+    "Python": {
+      "formatter": [
+        {
+          "code_action": "source.organizeImports.ruff"
+        },
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ],
+      "language_servers": ["basedpyright", "ruff"]
+    }
+  },
+  "lsp": {
+    "basedpyright": {
+      "settings": {
+        "basedpyright.analysis": {
+          "autoImportCompletions": false,
+          "inlayHints": {
+            "variableTypes": false
+          }
+        }
+      }
+    },
+    "rust-analyzer": {
+      "initialization_options": {
+        "completion": {
+          "callable": {
+            "snippets": "add_parentheses"
+          },
+          "hideDeprecated": true,
+          "postfix": {
+            "enable": false
+          }
+        },
+        "inlayHints": {
+          "closingBraceHints": {
+            "enable": false
+          },
+          "parameterHints": {
+            "enable": false
+          },
+          "typeHints": {
+            "enable": false
+          }
+        }
+      }
+    },
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "inlayHints": {
+            "functionLikeReturnTypes": {
+              "enabled": false
+            },
+            "parameterTypes": {
+              "enabled": false
+            },
+            "variableTypes": {
+              "enabled": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "lsp_highlight_debounce": 9007199254740991,
+  "middle_click_paste": false,
+  "preferred_line_length": 88,
+  "preview_tabs": {
+    "enabled": false
+  },
+  "project_panel": {
+    "hide_gitignore": true
+  },
+  "scrollbar": {
+    "show": "never"
+  },
+  "selection_highlight": false,
+  "show_wrap_guides": false,
+  "snippet_sort_order": "bottom",
+  "soft_wrap": "editor_width",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "terminal": {
+    "cursor_shape": "underline",
+    "font_family": "Input Mono Narrow",
+    "line_height": "standard",
+    "option_as_meta": true,
+    "shell": {
+      "with_arguments": {
+        "args": [],
+        "program": "/opt/homebrew/bin/fish"
+      }
+    }
+  },
+  "theme": {
+    "dark": "Gruvbox Dark Hard",
+    "light": "One Light",
+    "mode": "system"
+  },
+  "ui_font_size": 16,
+  "vim": {
+    "cursor_shape": {
+      "normal": "underline"
+    },
+    "highlight_on_yank_duration": 0,
+    "use_system_clipboard": "on_yank"
+  },
+  "vim_mode": true
+}

@@ -1,0 +1,17 @@
+[Default Applications]
+application/epub+zip=com.calibre_ebook.calibre.ebook-viewer.desktop
+application/x-xpinstall=org.mozilla.firefox.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=org.libreoffice.LibreOffice.writer.desktop
+text/plain=org.kde.kwrite.desktop
+text/markdown=org.kde.kwrite.desktop
+application/x-shellscript=org.kde.kwrite.desktop
+text/csv=org.kde.kwrite.desktop
+application/metalink+xml=org.kde.kwrite.desktop
+application/vnd.oasis.opendocument.text=org.libreoffice.LibreOffice.writer.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+
+[Added Associations]
+application/x-shellscript=org.kde.kwrite.desktop;
+text/csv=org.kde.kwrite.desktop;
+application/metalink+xml=org.kde.kwrite.desktop;
+application/vnd.oasis.opendocument.text=org.libreoffice.LibreOffice.writer.desktop;

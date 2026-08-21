@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+if test -e /Applications/mpv.app/Contents/MacOS/mpv; then
+    exec /Applications/mpv.app/Contents/MacOS/mpv "$@"
+elif command -v flatpak >/dev/null; then
+    exec flatpak run io.mpv.Mpv "$@"
+else
+    echo >&2 "OS detection failed."
+fi

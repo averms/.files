@@ -1,0 +1,31 @@
+[
+  {
+    "command": "-showPrevParameterHint",
+    "key": "up",
+    "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+  },
+  {
+    "command": "-showNextParameterHint",
+    "key": "down",
+    "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+  },
+  {
+    "command": "workbench.action.terminal.clear",
+    "key": "ctrl+l"
+  },
+  {
+    "command": "-editor.action.rename",
+    "key": "f2",
+    "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "command": "editor.action.acceptCursorTabSuggestion",
+    "key": "ctrl+y",
+    "when": "cpp.shouldAcceptTab"
+  },
+  {
+    "command": "-editor.action.acceptCursorTabSuggestion",
+    "key": "tab",
+    "when": "cpp.shouldAcceptTab"
+  }
+]

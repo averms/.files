@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+
+if command -v trash >/dev/null; then
+    exec trash --stopOnError "$@"
+elif command -v gio >/dev/null; then
+    exec gio trash "$@"
+fi

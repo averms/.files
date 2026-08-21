@@ -1,0 +1,10 @@
+\defaultfontfeatures[TriplicatePolySpec]{
+  Extension       = .ttf,
+  UprightFont     = triplicate_t3_regular-poly,
+  UprightFeatures = { SmallCapsFont = triplicate_c3_regular-poly },
+  ItalicFont      = triplicate_t3_italic-poly,
+  BoldFont        = triplicate_t3_bold-poly,
+  BoldFeatures    = { SmallCapsFont = triplicate_c3_bold-poly },
+  BoldItalicFont  = triplicate_t3_bold_italic-poly,
+}
+% vim: ft=tex
