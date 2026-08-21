@@ -1,5 +1,5 @@
-directory: /media/anon/Sarouyeh/data/important/media/beets-library
-library: /media/anon/Sarouyeh/data/important/media/beets-library/library.db
+directory: /media/anon/Sarouyeh/data/important/beets library
+library: /media/anon/Sarouyeh/data/important/beets library/library.db
 original_date: true
 per_disc_numbering: true
 import:
