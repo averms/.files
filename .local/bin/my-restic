@@ -1,8 +1,15 @@
 #!/bin/sh
 set -eu
 
+nthreads=12
+
+export RCLONE_CHECKERS="$nthreads"
+export RCLONE_DRIVE_CHUNK_SIZE="64Mi"
+export RCLONE_DRIVE_UPLOAD_CUTOFF="128Mi"
+export RCLONE_FAST_LIST=1
+export RCLONE_TRANSFERS="$nthreads"
+
 export RESTIC_FEATURES="device-id-for-hardlinks=true"
-export RESTIC_REPOSITORY="/media/anon/Sarouyeh/backups/restic"
 export RESTIC_PACK_SIZE=64
 
-exec restic "$@"
+exec restic -o rclone.connections="$nthreads" "$@"

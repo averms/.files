@@ -9,6 +9,7 @@ text/csv=org.kde.kwrite.desktop
 application/metalink+xml=org.kde.kwrite.desktop
 application/vnd.oasis.opendocument.text=org.libreoffice.LibreOffice.writer.desktop
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+x-scheme-handler/jetbrains=jetbrainsd.desktop
 
 [Added Associations]
 application/x-shellscript=org.kde.kwrite.desktop;

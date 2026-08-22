@@ -45,7 +45,3 @@
 	command = zstdmt -q -6
 [include]
 	path = me
-[includeif "gitdir:~/Code/notmy/"]
-	path = not_me
-[includeif "gitdir:~/Code/work/"]
-	path = work_me
