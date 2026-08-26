@@ -52,18 +52,12 @@
     text(weight: "regular", it)
   }
 
-  let target = context { dictionary(std).at("target", default: () => "paged")() }
-
   title()
-  // see https://forum.typst.app/t/3701 for why this is commented out
-  // if target() == "html" {
-  if false {
-    authors.map(x => html.elem("p", attrs: (class: "author"), x)).join()
-  } else [
-    #set align(center)
-    #set text(style: "italic")
-    #authors.join(", ")
-  ]
+  {
+    set align(center)
+    set text(style: "italic")
+    authors.join(", ")
+  }
 
   body
 }

@@ -55,6 +55,14 @@ newstack = [
   "description('private: megamerge\n')",
   "-m",
 ]
+stack = [
+  "rebase",
+  "-A",
+  "trunk()",
+  "-B",
+  "description('private: megamerge\n')",
+  "-r",
+]
 yay = [
   "rebase",
   "--skip-emptied",

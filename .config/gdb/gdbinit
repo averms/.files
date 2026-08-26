@@ -1,3 +1,4 @@
+# install with curl -fsSRLJO https://gef.blah.cat/py
 source ~/.config/gdb/gef.py
 
 set debuginfod enabled on
