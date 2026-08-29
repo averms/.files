@@ -61,10 +61,7 @@ else
 end
 
 set -gx HOMEBREW_CELLAR "$HOMEBREW_PREFIX/Cellar"
-fish_add_path -g --path --move \
-    "$HOMEBREW_PREFIX/opt/rustup/bin" \
-    "$HOMEBREW_PREFIX/bin" \
-    "$HOMEBREW_PREFIX/sbin"
+fish_add_path -g --path --move "$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin"
 if not contains "$HOMEBREW_PREFIX/share/info" $INFOPATH
     set -gx INFOPATH "$HOMEBREW_PREFIX/share/info" $INFOPATH
 end
@@ -102,19 +99,19 @@ alias fd="fd --hidden --no-ignore-vcs --color=never"
 alias mv="mv -i"
 
 # the classics
+abbr -a cn podman
+abbr -a cnc "docker-compose"
+abbr -a dl "curl -fRLJO"
+abbr -a mfo "mediainfo"
 alias ...="cd ../.."
 alias a="bsdtar"
 alias cdc="cd - >/dev/null"
-alias cn="podman"
-alias dl="curl -fRLJO"
 alias e="nvim"
 alias erc="nvim ~/.config/nvim/init.vim"
 alias gg="git s"
 alias gp="grep --extended-regexp --color=auto --ignore-case"
-alias mfo="command mediainfo"
 alias th="trash-put"
 
-alias cnc="docker-compose"
 alias obsid="nvim ~/Documents/syncthing/wiki/Index.md"
 alias npi="NONO_TRUST_PROXY_CA=1 NONO_PROFILE=my-pi nono run --allow-cwd pi"
 

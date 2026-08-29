@@ -1,0 +1,18 @@
+[global]
+disable = [
+    "MD034",  # i disagree with this
+    "MD036",  # false positives
+    "MD041",  # incompatible with obsidian
+]
+
+unfixable = [
+   "MD040"  # it just adds text as the language everywhere
+]
+
+[MD007]
+style = "text-aligned"
+
+[MD013]
+reflow = true
+reflow-mode = "semantic-line-breaks"
+code-block-line-length = 88

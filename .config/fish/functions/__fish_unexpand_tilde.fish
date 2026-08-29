@@ -1,5 +1,6 @@
 function __fish_unexpand_tilde --description 'Replace $HOME with "~"'
-    set -l realhome (string escape --style=regex -- ~)
-    # support symlinked HOMEs inside /var
-    string replace -r -- "^(?:/var)?$realhome(\$|/)" '~$1' $argv
+    # Match both what $HOME is set to and what it resolves to,
+    # which handles users with symlinked HOMEs.
+    set -l homes (string escape --style=regex -- ~ (path resolve -- ~))
+    string replace -r -- "^(?:"(string join '|' $homes)")(\$|/)" '~$1' $argv
 end

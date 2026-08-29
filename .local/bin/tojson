@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+if [ $# -ne 1 ]; then
+    echo "Usage: ${0##*/} <FILE.json> [>FORMATTED.json]" >&2
+    exit 1
+fi
+
+<"$1" pnx @biomejs/biome check --config-path ~/.config/zed/biome.json \
+    --stdin-file-path "$1" --write

@@ -11,6 +11,9 @@
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
+  "[javascript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
   "[makefile]": {
     "editor.insertSpaces": false
   },
@@ -19,6 +22,9 @@
   },
   "[toml]": {
     "editor.defaultFormatter": "tombi-toml.tombi"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "C_Cpp.intelliSenseEngine": "disabled",
   "clangd.arguments": ["--header-insertion=never"],
@@ -33,7 +39,6 @@
   "editor.acceptSuggestionOnEnter": "off",
   "editor.bracketPairColorization.enabled": false,
   "editor.codeLens": false,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.fontFamily": "Input Sans Narrow",
   "editor.fontSize": 13,
   "editor.guides.highlightActiveIndentation": false,
@@ -87,6 +92,8 @@
   },
   "github.copilot.nextEditSuggestions.enabled": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
+  "js/ts.suggest.autoImports": false,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
   "json.schemaDownload.enable": true,
   "jupyter.askForKernelRestart": false,
   "markdown.preview.fontFamily": "sans-serif",
@@ -140,8 +147,6 @@
     }
   },
   "terminal.integrated.suggest.enabled": false,
-  "typescript.suggest.autoImports": false,
-  "typescript.updateImportsOnFileMove.enabled": "always",
   "update.mode": "manual",
   "update.showReleaseNotes": false,
   "vscode-neovim.ctrlKeysForInsertMode": [

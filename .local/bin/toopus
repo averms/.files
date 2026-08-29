@@ -5,5 +5,30 @@ if [ $# -ne 2 ]; then
     exit 1
 fi
 
-sox -G "$1" --comment '' -t wav - rate -v 48k |
-    opusenc --ignorelength --bitrate 160 - "$2"
+# an explanation of the command line:
+#
+# `-y`:
+#     because we want to overwrite output files.
+# `-map_metadata -1`:
+#     to get rid of comments and tags (beets copies them).
+# `-filter:a ...`:
+#     the filter line resamples to 48 kHz in very high quality. precision can actually
+#     go up to 33 but it's inaudible and unmeasurable.
+# `-sample_fmt flt`:
+#     the sample_fmt line is interesting. the libopus encoder in ffmpeg supports two
+#     sample formats: s16 and flt. it only chooses s16 when the input is already s16.
+#     this is normally fine but aresample changes all of that. when you resample audio,
+#     certain points that were below 0 dBFS (within the range) will go out of range.
+#     There are two decent ways to handle this: (1) attenuation, which is what the sox
+#     program does with -G, (2) float passthrough. The latter option means you don't
+#     care about being above 0 dBFS and write floating point samples that are above 1.0.
+#     On playback, PipeWire or whatever will soft-clip. What you don't want to do is
+#     hard-clip, AKA a saturating conversion. That's what ffmpeg would do on 16-bit
+#     inputs if we didn't specify flt. Since option 2 is used by opusenc, I think it's
+#     a good choice.
+
+ffmpeg -y -v warning -i "$1" \
+    -map_metadata -1 \
+    -filter:a "aresample=48000:resampler=soxr:precision=28" \
+    -sample_fmt flt \
+    -c:a libopus -b:a 160k "$2"

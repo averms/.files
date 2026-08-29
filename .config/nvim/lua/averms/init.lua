@@ -128,6 +128,8 @@ vim.g.vimsyn_noerror = 1
 
 vim.g.gitcommit_summary_length = 72
 
+vim.g.vim_json_warnings = 0
+
 --- Fancy, expensive plugins. Also stuff not useful inside VS Code.
 
 if vim.g.minimal_init then
