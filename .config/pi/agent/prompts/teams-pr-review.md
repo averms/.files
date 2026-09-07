@@ -10,10 +10,10 @@ with real headings and clickable hyperlinks.
 ## Step 1: gather the PRs
 
 ```
-gh pr list --author "@me" --state open --json number,title,url,body,isDraft,additions,deletions,changedFiles --limit 50
+gh pr list --author "@me" --state open --json number,title,url,body,isDraft,reviewDecision,additions,deletions,changedFiles
 ```
 
-- Skip drafts unless I say otherwise (mention you skipped them if any exist).
+- Skip drafts and PRs that are already approved. Mention you skipped them if any exist.
 - If there are no open PRs, say so and stop.
 
 ## Step 2: compose the message as Markdown

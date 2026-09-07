@@ -30,6 +30,7 @@
   "clangd.arguments": ["--header-insertion=never"],
   "cmake.configureOnOpen": true,
   "crashReporting.enabled": "off",
+  "cursor.composer.queueMessageDefaultBehavior": "steer",
   "cursorpyright.analysis.autoImportCompletions": false,
   "cursorpyright.analysis.inlayHints.genericTypes": false,
   "cursorpyright.shouldImportPylanceSettings": "never",

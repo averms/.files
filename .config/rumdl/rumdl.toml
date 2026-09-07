@@ -2,7 +2,7 @@
 disable = [
     "MD034",  # i disagree with this
     "MD036",  # false positives
-    "MD041",  # incompatible with obsidian
+    "MD041",  # incompat with quarto, obsidian, etc.
 ]
 
 unfixable = [
@@ -13,6 +13,6 @@ unfixable = [
 style = "text-aligned"
 
 [MD013]
-reflow = true
+reflow = false
 reflow-mode = "semantic-line-breaks"
 code-block-line-length = 88

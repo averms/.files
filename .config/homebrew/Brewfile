@@ -133,6 +133,9 @@ else
 
     if hostname.start_with?("FSO-")
       cask_args appdir: "~/Applications"
+      cask "cursor"
+      cask "mitmproxy"
+      cask "claude"
     else
       cask "keepassxc"
       cask "openmtp"
