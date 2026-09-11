@@ -26,10 +26,11 @@ set shell=bash
 set scrolloff=5
 
 " set up the wild menu
-set wildignorecase
-set wildmode=list:longest,full
 set suffixes+=.pdf
 set wildignore+=*.pyc,*.class,*.aux,*.so*
+set wildignorecase
+set wildmode=list:longest,full
+set wildoptions-=pum
 
 " Make the paragraph motions work as expected (ignore roff macros).
 set paragraphs=

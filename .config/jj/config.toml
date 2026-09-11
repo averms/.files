@@ -1,4 +1,8 @@
 #:schema https://docs.jj-vcs.dev/latest/config-schema.json
+#:tombi schema.strict = false
+
+[snapshot]
+auto-track = "none()"
 
 [ui]
 default-command = "status"
@@ -6,11 +10,9 @@ pager = ":builtin"
 diff-editor = ":builtin"
 merge-editor = "meld"
 
-[snapshot]
-auto-track = "none()"
-
-[diff.color-words]
-max-inline-alternation = 1
+[merge-tools.delta]
+diff-args = ["--light", "$left", "$right", "--width=$width"]
+diff-expected-exit-codes = [0,1]
 
 [colors]
 # TODO: this looks ugly

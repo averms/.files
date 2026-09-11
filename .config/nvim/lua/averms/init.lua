@@ -99,8 +99,6 @@ add "farmergreg/vim-lastplace"
 
 --- Some filetype plugins
 
-add "fladson/vim-kitty"
-
 add "Vimjas/vim-python-pep8-indent"
 vim.g.python_pep8_indent_multiline_string = -1
 
@@ -211,6 +209,7 @@ later(function()
 end)
 
 vim.diagnostic.config { virtual_lines = { current_line = true } }
+
 -- Put diagnostics in the loclist when you open it.
 vim.diagnostic.handlers.loclist = {
   show = function(_, _, _, _)
@@ -219,6 +218,8 @@ vim.diagnostic.handlers.loclist = {
     vim.api.nvim_set_current_win(winid)
   end,
 }
+
+add { source = "neovim/nvim-lspconfig" }
 
 vim.lsp.config["*"] = {
   root_markers = { ".git" },
@@ -235,21 +236,12 @@ vim.lsp.config["*"] = {
   end,
 }
 
-vim.lsp.config.bashls = {
-  cmd = { "bash-language-server", "start" },
-  filetypes = { "bash", "sh" },
-}
-
 vim.lsp.config.clangd = {
   cmd = { "clangd", "--header-insertion=never" },
-  filetypes = { "c", "cpp" },
-  root_markers = { "compile_commands.json" },
 }
 
--- I like using it from the CLI but in-editor it's too distracting.
-vim.lsp.config.harper = {
-  cmd = { "harper-ls", "--stdio" },
-  filetypes = { "jjdescription", "gitcommit", "markdown", "typst", "text" },
+vim.lsp.config.harper_ls = {
+  filetypes =  vim.list_extend(vim.lsp.config.harper_ls.filetypes, {"jjdescription"}),
   settings = {
     ["harper-ls"] = {
       linters = {
@@ -260,28 +252,19 @@ vim.lsp.config.harper = {
     },
   },
 }
+
+-- Don't enable harper by default, only toggle with this shortcut.
 vim.keymap.set("n", "<leader>ss", function()
   local is_enabled = vim.lsp.is_enabled "harper"
   vim.lsp.enable("harper", not is_enabled)
 end)
 
+
 vim.lsp.config.markdown_oxide = {
-  cmd = { "markdown-oxide" },
-  filetypes = { "markdown" },
-  root_markers = { ".moxide.toml", ".obsidian" },
   workspace_required = true,
 }
 
-vim.lsp.config.ruff = {
-  cmd = { "ruff", "server" },
-  filetypes = { "python" },
-  root_markers = { "pyproject.toml" },
-}
-
 vim.lsp.config.ty = {
-  cmd = { "ty", "server" },
-  filetypes = { "python" },
-  root_markers = { "uv.lock" },
   settings = {
     ty = {
       inlayHints = {
@@ -291,32 +274,7 @@ vim.lsp.config.ty = {
   },
 }
 
--- If fname is in a library, return the existing root workspace it's a part of.
--- Otherwise return nil.
-local function existing_rust_root(fname)
-  local user_home = vim.fs.normalize(vim.env.HOME)
-  local cargo_home = os.getenv "CARGO_HOME" or user_home .. "/.cargo"
-  local registry = cargo_home .. "/registry/src"
-  local git_registry = cargo_home .. "/git/checkouts"
-  local rustup_home = os.getenv "RUSTUP_HOME" or user_home .. "/.rustup"
-  local toolchains = rustup_home .. "/toolchains"
-
-  for _, dir in pairs { toolchains, registry, git_registry } do
-    if vim.fs.relpath(dir, fname) ~= nil then
-      local clients = vim.lsp.get_clients { name = "rust_analyzer" }
-      if #clients > 0 then
-        return clients[#clients].config.root_dir
-      else
-        return nil
-      end
-    end
-  end
-end
-
 vim.lsp.config.rust_analyzer = {
-  cmd = { "rust-analyzer" },
-  filetypes = { "rust" },
-  workspace_required = true,
   settings = {
     ["rust-analyzer"] = {
       inlayHints = {
@@ -329,29 +287,25 @@ vim.lsp.config.rust_analyzer = {
         postfix = { enable = false },
         hideDeprecated = true,
       },
-      -- check = {
-      --     command = "clippy"
-      -- },
+      check = {
+          command = "clippy"
+      },
     },
   },
-  root_dir = function(bufnr, done_callback)
-    local fname = vim.api.nvim_buf_get_name(bufnr)
-    local existing_root = existing_rust_root(fname)
-    if existing_root then
-      done_callback(existing_root)
-      return
-    end
+}
 
-    local workspace_root = vim.fs.root(bufnr, "Cargo.lock")
-    done_callback(workspace_root)
-  end,
+vim.lsp.config.gopls = {
+  settings = {
+    gopls = { usePlaceholders = false },
+  }
 }
 
 vim.lsp.enable {
   "bashls",
   "clangd",
+  "gopls",
   "markdown_oxide",
   "ruff",
-  "ty",
   "rust_analyzer",
+  "ty",
 }
