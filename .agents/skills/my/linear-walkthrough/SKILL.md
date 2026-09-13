@@ -1,6 +1,7 @@
 ---
 name: linear-walkthrough
 description: Write a linear walkthrough of a codebase or specific part of a codebase. Use when the user asks for a linear walkthrough.
+license: Stolen from https://simonwillison.net/guides/agentic-engineering-patterns/linear-walkthroughs/
 ---
 
 # Linear Walkthrough Skill
@@ -66,8 +67,6 @@ grep -n '{{pattern}}' {{file path}}
 - If a command produces noisy or wrong output, use `uvx showboat pop` to
   remove the last entry and try again.
 - Pipe long commentary via stdin: `echo "..." | uvx showboat note file.md`.
-- At the end, run `uvx showboat extract <file>` if the user wants to see
-  the recipe that built the document.
 
 ## Documentation for `uvx showboat`
 

@@ -241,7 +241,7 @@ vim.lsp.config.clangd = {
 }
 
 vim.lsp.config.harper_ls = {
-  filetypes =  vim.list_extend(vim.lsp.config.harper_ls.filetypes, {"jjdescription"}),
+  filetypes = vim.list_extend(vim.lsp.config.harper_ls.filetypes, { "jjdescription" }),
   settings = {
     ["harper-ls"] = {
       linters = {
@@ -255,10 +255,9 @@ vim.lsp.config.harper_ls = {
 
 -- Don't enable harper by default, only toggle with this shortcut.
 vim.keymap.set("n", "<leader>ss", function()
-  local is_enabled = vim.lsp.is_enabled "harper"
-  vim.lsp.enable("harper", not is_enabled)
+  local is_enabled = vim.lsp.is_enabled "harper_ls"
+  vim.lsp.enable("harper_ls", not is_enabled)
 end)
-
 
 vim.lsp.config.markdown_oxide = {
   workspace_required = true,
@@ -269,6 +268,7 @@ vim.lsp.config.ty = {
     ty = {
       inlayHints = {
         callArgumentNames = false,
+        variableTypes = false,
       },
     },
   },
@@ -288,7 +288,7 @@ vim.lsp.config.rust_analyzer = {
         hideDeprecated = true,
       },
       check = {
-          command = "clippy"
+        command = "clippy",
       },
     },
   },
@@ -297,7 +297,7 @@ vim.lsp.config.rust_analyzer = {
 vim.lsp.config.gopls = {
   settings = {
     gopls = { usePlaceholders = false },
-  }
+  },
 }
 
 vim.lsp.enable {

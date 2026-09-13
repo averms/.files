@@ -36,7 +36,7 @@
 	ec = config --global -e
 	fpush = push --force-with-lease
 	lg = log --oneline --graph --all
-	s = status --short --branch
+	s = status --branch --show-stash
 	sdiff = diff --staged
 	u = restore
 	# list all branches with unpushed commits.

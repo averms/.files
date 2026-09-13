@@ -45,6 +45,9 @@ set -gx UV_PYTHON_DOWNLOADS manual
 set -gx UV_PYTHON_PREFERENCE system
 set -gx UV_PYTHON_INSTALL_BIN 0
 
+# Optimize Go binaries
+set -gx GOAMD64 v3
+
 # Telemetry
 set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
 
