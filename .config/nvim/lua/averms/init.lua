@@ -296,7 +296,7 @@ vim.lsp.config.rust_analyzer = {
 
 vim.lsp.config.gopls = {
   settings = {
-    gopls = { usePlaceholders = false },
+    gopls = { completeFunctionCalls = false },
   },
 }
 

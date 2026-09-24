@@ -59,6 +59,7 @@ nnoremap <leader><leader> <c-^>
 " LSP mappings
 " gra: code action
 " grn: rename
+" gri: go to all implementations
 nnoremap <leader>f <cmd>lua vim.lsp.buf.format { async = true }<cr>
 
 " Auto-insert bracket pairs
