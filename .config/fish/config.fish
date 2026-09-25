@@ -102,7 +102,7 @@ alias fd="fd --hidden --no-ignore-vcs --color=never"
 alias mv="mv -i"
 
 # the classics
-abbr -a cn podman
+abbr -a --command "" --command sudo cn podman
 abbr -a cnc "docker-compose"
 abbr -a dl "curl -fRLJO"
 abbr -a mfo "mediainfo"
