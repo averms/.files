@@ -1,3 +1,3 @@
 runtime after/ftplugin/scheme.vim
 
-set lispwords-=if
+setlocal lispwords-=if

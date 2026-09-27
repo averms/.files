@@ -3,7 +3,6 @@ runtime after/ftplugin/_prose.vim
 setlocal shiftwidth=2
 " definition lists with Pandoc syntax
 setlocal comments=fb:*,fb:-,fb:+,n:>,fb::
-setlocal commentstring=<!--\ %s\ -->
 
 setlocal includeexpr=v:fname.'.md'
 

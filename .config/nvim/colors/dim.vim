@@ -17,7 +17,6 @@ highlight Question       ctermfg=2
 highlight Title          ctermfg=5
 highlight WarningMsg     ctermfg=1
 highlight WildMenu       ctermfg=0 ctermbg=11
-highlight Conceal        ctermfg=7 ctermbg=7
 highlight SpellBad       ctermbg=9
 highlight SpellRare      ctermbg=13
 highlight SpellLocal     ctermbg=14
@@ -63,8 +62,7 @@ if &background == "light"
   highlight ColorColumn  ctermfg=8    ctermbg=7
   highlight Folded       ctermfg=8    ctermbg=7
   highlight FoldColumn   ctermfg=8    ctermbg=7
-  highlight Pmenu        ctermfg=0    ctermbg=7
-  highlight PmenuSel     ctermfg=7    ctermbg=0
+  highlight PmenuSel     ctermfg=0    ctermbg=7    cterm=underline
   highlight SpellCap     ctermfg=8    ctermbg=7
   highlight StatusLine   ctermfg=0    ctermbg=7    cterm=bold
   highlight StatusLineNC ctermfg=8    ctermbg=7    cterm=NONE
@@ -76,8 +74,7 @@ else
   highlight ColorColumn  ctermfg=7    ctermbg=8
   highlight Folded       ctermfg=7    ctermbg=8
   highlight FoldColumn   ctermfg=7    ctermbg=8
-  highlight Pmenu        ctermfg=15   ctermbg=8
-  highlight PmenuSel     ctermfg=8    ctermbg=15
+  highlight PmenuSel     ctermfg=15   ctermbg=8    cterm=underline
   highlight SpellCap     ctermfg=7    ctermbg=8
   highlight StatusLine   ctermfg=15   ctermbg=8    cterm=bold
   highlight StatusLineNC ctermfg=7    ctermbg=8    cterm=NONE
@@ -100,7 +97,7 @@ let g:fzf_colors = { 'fg':      ['fg', 'DimFzfFg'],
                    \ 'bg':      ['bg', 'DimFzfBg'],
                    \ 'hl':      ['fg', 'DimFzfHl'],
                    \ 'fg+':     ['fg', 'DimFzfFgPlus'],
-                   \ 'bg+':     ['bg', 'DimFzfbgPlus'],
+                   \ 'bg+':     ['bg', 'DimFzfBgPlus'],
                    \ 'hl+':     ['fg', 'DimFzfHl'],
                    \ 'info':    ['fg', 'DimFzfInfo'],
                    \ 'prompt':  ['fg', 'DimFzfPrompt'],
