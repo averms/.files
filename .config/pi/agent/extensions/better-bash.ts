@@ -21,6 +21,7 @@ const BLOCKED_COMMANDS = {
   pip3: "Error: pip3 is disabled. Use uv: uv add PKG / uv run --with PKG ...",
   npm: "Error: npm is disabled. Use pnpm (pnpm add / pnpm install / pnpm run).",
   npx: "Error: npx is disabled. Use pnpm dlx [--package PKG] EXECUTABLE.",
+  timeout: "Error: timeout(1) is disabled. Use your bash tool's native timeout parameter instead.",
 } as const;
 
 const BLOCKED_IN_JJ_REPO = {

@@ -17,6 +17,7 @@ Proceed in short rounds:
 - Identify the next unresolved decision, assumption, dependency, or risk.
 - Ask at most three focused questions at a time.
 - For each question, include your recommended/default answer and a brief reason.
+- Number questions, starting at 1 every round.
 - Wait for my response before continuing.
 
 Resolve prerequisite decisions before dependent ones. Prefer concrete questions

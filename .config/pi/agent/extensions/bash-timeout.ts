@@ -23,7 +23,7 @@ The bash tool enforces timeouts even when you omit the timeout parameter.
 
 For long-running commands (builds, installs, test suites), set an
 explicit timeout that fits the workload. Do not assume commands run
-forever.
+forever. Do not use timeout(1) from GNU coreutils.
 `;
 
 export default function bashTimeoutExtension(pi: ExtensionAPI): void {
