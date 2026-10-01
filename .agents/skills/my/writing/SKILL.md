@@ -311,8 +311,8 @@ These are read later, out of context, by someone debugging or tracing a decision
 
 **Commit messages.** Short imperative subject (≤72 chars ideally). Blank line. Body
 wrapped at 72 explaining *why* and *what changed at the level of intent*, not a restatement of the
-diff. `Fix retry loop replaying POST requests` over `Update client.py`. Use Conventional Commits
-prefixes only if the repo already does and in general follow repo style.
+diff. `Fix retry loop replaying POST requests` over `Update client.py`. Of
+course, its important to preserve local style.
 
 **Make review artifacts standalone.** An issue, PR, or handoff must make sense without the chat
 session that produced it. "As discussed" and "per the above" are dead links to a private context.

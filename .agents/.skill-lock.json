@@ -6,9 +6,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/marimo-team/marimo-pair.git",
       "skillPath": "skills/marimo-pair/SKILL.md",
-      "skillFolderHash": "603a34d01071e818cd33a4f00eb7cd2f806e3813",
+      "skillFolderHash": "3ed40757654252e134d43baa83da8137ea719349",
       "installedAt": "2026-08-14T03:50:31.669Z",
-      "updatedAt": "2026-08-15T19:55:39.774Z"
+      "updatedAt": "2026-10-01T22:15:01.533Z"
     },
     "pdf": {
       "source": "anthropics/skills",
@@ -33,9 +33,9 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/vercel-labs/agent-browser.git",
       "skillPath": "skills/agent-browser/SKILL.md",
-      "skillFolderHash": "037e8078db4b20b4aa25c04f21c6de7d335ec449",
+      "skillFolderHash": "82def67855a0d2aad7794207951820fa5422fdb0",
       "installedAt": "2026-08-14T04:18:46.745Z",
-      "updatedAt": "2026-08-15T19:55:42.543Z"
+      "updatedAt": "2026-10-01T22:15:01.861Z"
     }
   },
   "dismissed": {
