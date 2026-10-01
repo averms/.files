@@ -8,7 +8,7 @@
  *   (ends up as an ancient version on macOS).
  */
 
-import { existsSync, realpathSync, statSync } from "node:fs";
+import { existsSync, statSync } from "node:fs";
 import { delimiter, dirname, join, resolve } from "node:path";
 import {
   createBashTool,
@@ -16,52 +16,65 @@ import {
   type ExtensionAPI,
 } from "@earendil-works/pi-coding-agent";
 
-const BLOCKED_COMMANDS = {
-  pip: "Error: pip is disabled. Use uv: uv add PKG / uv run --with PKG ...",
-  pip3: "Error: pip3 is disabled. Use uv: uv add PKG / uv run --with PKG ...",
-  npm: "Error: npm is disabled. Use pnpm (pnpm add / pnpm install / pnpm run).",
-  npx: "Error: npx is disabled. Use pnpm dlx [--package PKG] EXECUTABLE.",
-  timeout: "Error: timeout(1) is disabled. Use your bash tool's native timeout parameter instead.",
-} as const;
+type BlockSpecification = {
+  cmd: string;
+  msg: string;
+  when?: (cwd: string) => boolean;
+};
 
-const BLOCKED_IN_JJ_REPO = {
-  git: [
-    "Error: git is disabled in jj repos. Use jj instead",
-    "the only thing you might need git for is annotated tags.",
-  ].join("\n"),
-} as const;
-
-const singleQuote = (s: string) => `'${s.replaceAll("'", `'\\''`)}'`;
-
-const toExportedBashFuncs = (
-  x: Record<string, string>,
-): Record<string, string> =>
-  Object.fromEntries(
-    Object.entries(x).map(([name, message]) => [
-      `BASH_FUNC_${name}%%`,
-      `() { printf '%s\\n' ${singleQuote(message)} >&2; return 1; }`,
-    ]),
-  );
-
-const inJjRepo = (dir: string): boolean => {
-  for (let d = resolve(dir); ; d = dirname(d)) {
+const inJjRepo = (cwd: string): boolean => {
+  for (let d = resolve(cwd); ; d = dirname(d)) {
     if (existsSync(join(d, ".jj"))) return true;
     if (dirname(d) === d) return false;
   }
 };
 
-/// First executable `bash` on PATH, or undefined to use pi's default.
-const resolvePathBash = (): string | undefined => {
+const blockedCommands: BlockSpecification[] = [
+  {
+    cmd: "pip",
+    msg: "Error: pip is disabled. Use uv: uv add PKG / uv run --with PKG ...",
+  },
+  {
+    cmd: "pip3",
+    msg: "Error: pip3 is disabled. Use uv: uv add PKG / uv run --with PKG ...",
+  },
+  {
+    cmd: "npm",
+    msg: "Error: npm is disabled. Use pnpm (pnpm add / pnpm install / pnpm run).",
+  },
+  {
+    cmd: "npx",
+    msg: "Error: npx is disabled. Use pnpm dlx [--package PKG] EXECUTABLE.",
+  },
+  {
+    cmd: "timeout",
+    msg: "Error: GNU timeout is disabled. Use your bash tool's timeout parameter instead.",
+  },
+  {
+    cmd: "git",
+    msg: [
+      "Error: git is disabled in jj repos. Use jj instead.",
+      "Note that jj makes changes to its CLI often so use `jj help`",
+    ].join("\n"),
+    when: inJjRepo,
+  },
+];
+
+const singleQuote = (s: string) => `'${s.replaceAll("'", `'\\''`)}'`;
+
+/// Convert from { cmd, msg } to an exported Bash function as an env var
+const toExportedBashFunc = (cmd: string, msg: string): [string, string] => [
+  `BASH_FUNC_${cmd}%%`,
+  `() { printf '%s\\n' ${singleQuote(msg)} >&2; return 1; }`,
+];
+
+/// First regular file named name on PATH
+const findOnPath = (name: string): string | undefined => {
   for (const dir of (process.env.PATH ?? "").split(delimiter)) {
     if (!dir) continue;
-    const candidate = join(dir, "bash");
+    const candidate = join(dir, name);
     try {
-      if (!statSync(candidate).isFile()) continue;
-      if (realpathSync(candidate) === realpathSync("/bin/bash")) {
-        // we found pi's default, so no need to override
-        return undefined;
-      }
-      return candidate;
+      if (statSync(candidate).isFile()) return candidate;
     } catch {
       // not in `dir`, keep looking
     }
@@ -70,16 +83,17 @@ const resolvePathBash = (): string | undefined => {
 };
 
 export default function blockedCommandsEnvExtension(pi: ExtensionAPI): void {
-  const shellPath = resolvePathBash();
+  const shellPath = findOnPath("bash");
 
   pi.registerTool(
     createBashTool(process.cwd(), {
       shellPath,
       spawnHook: ({ command, cwd, env }) => {
-        const blockedEnv = toExportedBashFuncs({
-          ...BLOCKED_COMMANDS,
-          ...(inJjRepo(cwd) ? BLOCKED_IN_JJ_REPO : {}),
-        });
+        const blockedEnv = Object.fromEntries(
+          blockedCommands
+            .filter(({ when }) => !when || when(cwd))
+            .map(({ cmd, msg }) => toExportedBashFunc(cmd, msg)),
+        );
 
         return {
           command,
@@ -90,9 +104,7 @@ export default function blockedCommandsEnvExtension(pi: ExtensionAPI): void {
     }),
   );
 
-  if (shellPath) {
-    pi.on("user_bash", () => ({
-      operations: createLocalBashOperations({ shellPath }),
-    }));
-  }
+  pi.on("user_bash", () => ({
+    operations: createLocalBashOperations({ shellPath }),
+  }));
 }

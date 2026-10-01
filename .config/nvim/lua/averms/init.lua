@@ -97,7 +97,8 @@ use {
       require("mini.align").setup()
 
       -- Copy tpope keybinds
-      require("mini.surround").setup {
+      local surround = require "mini.surround"
+      surround.setup {
         mappings = {
           add = "ys",
           delete = "ds",
@@ -111,12 +112,10 @@ use {
         },
       }
       vim.keymap.del("x", "ys")
-      vim.keymap.set(
-        "x",
-        "S",
-        ":<C-u>lua MiniSurround.add('visual')<cr>",
-        { silent = true }
-      )
+      vim.keymap.set("x", "S", function()
+        vim.cmd.normal { vim.keycode "<Esc>", bang = true }
+        surround.add "visual"
+      end, { desc = "Add surrounding to selection" })
 
       require("mini.operators").setup {
         exchange = { prefix = "cx" },

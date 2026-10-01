@@ -7,8 +7,17 @@
 
   outputs = {nixpkgs, ...}: let
     allSystems = ["aarch64-darwin" "aarch64-linux" "x86_64-linux"];
+    pkgsFor = system:
+      import nixpkgs {
+        inherit system;
+        overlays = [
+          (final: _prev: {
+            jdk = final.temurin-bin-27;
+          })
+        ];
+      };
     forAllSystems = f:
-      nixpkgs.lib.genAttrs allSystems (system: f nixpkgs.legacyPackages.${system});
+      nixpkgs.lib.genAttrs allSystems (system: f (pkgsFor system));
   in {
     packages = forAllSystems (
       pkgs: {
@@ -20,8 +29,8 @@
             czkawka
             fd
             hyperfine
+            netcat # this is the nice openbsd version
           ];
-
         };
 
         occasional = pkgs.buildEnv {
@@ -51,7 +60,6 @@
             streamrip
             yt-dlp
           ];
-
         };
       }
     );
