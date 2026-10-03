@@ -22,5 +22,6 @@
   "collapseChangelog": true,
   "packages": [
     "../../nono/packages/nolabs-ai/pi/extensions/nono-sandbox.ts"
-  ]
+  ],
+  "tuiMode": "regular"
 }

@@ -11,9 +11,14 @@
   "spinnerTipsEnabled": false,
   "effortLevel": "high",
   "awaySummaryEnabled": false,
+  "voice": {
+    "enabled": true,
+    "mode": "tap"
+  },
   "autoMemoryEnabled": false,
   "skipDangerousModePermissionPrompt": true,
   "skipWorkflowUsageWarning": true,
   "theme": "auto",
-  "autoCompactEnabled": false
+  "autoCompactEnabled": false,
+  "voiceEnabled": true
 }

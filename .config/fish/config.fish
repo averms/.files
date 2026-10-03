@@ -19,7 +19,6 @@ set -gx PARALLEL_HOME "$HOME/.config/parallel"
 set -gx TEXMFHOME "$HOME/.local/share/texmf"
 set -gx WOLFRAM_USERBASE "$HOME/.local/share/Wolfram"
 set -gx SQLITE_HISTORY "$HOME/.local/state/sqlite_history"
-set -gx RUSTUP_HOME "$HOME/.local/share/rustup"
 set -gx PYTHON_HISTORY "$HOME/.local/state/python_history"
 set -gx INPUTRC "$HOME/.config/readline/inputrc"
 set -gx NODE_REPL_HISTORY "$HOME/.local/state/node_repl_history"
@@ -123,9 +122,15 @@ alias .f="git --git-dir=$HOME/.files"
 alias .fls=".f ls-files --others"
 
 # break habits
+
+# use pnpm
 alias npm="false"
 alias npx="false"
+# use nvim or e
 alias vim="false"
+# use rsync as its much better about copying metadata
+alias scp="false"
+alias sftp="false"
 
 #
 # General settings
