@@ -20,5 +20,6 @@
   "skipWorkflowUsageWarning": true,
   "theme": "auto",
   "autoCompactEnabled": false,
+  "disableDeepLinkRegistration": "disable",
   "voiceEnabled": true
 }

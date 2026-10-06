@@ -1,3 +1,7 @@
+require "socket"
+hostname = Socket.gethostname
+
+# brew "cmake"
 # brew "cosign"
 # brew "czkawka"
 # brew "difftastic"
@@ -7,6 +11,7 @@
 # brew "goat"
 # brew "graphviz"
 # brew "hurl"
+# brew "iperf3"
 # brew "jdupes"
 # brew "llvm"
 # brew "mat2"
@@ -27,7 +32,6 @@ brew "agent-browser"
 brew "awscli"
 brew "b3sum"
 brew "bash-language-server"
-brew "cmake"
 brew "cpdf"
 brew "crane"
 brew "docker-buildx"
@@ -39,12 +43,8 @@ brew "fish"
 brew "fzf"
 brew "gh"
 brew "git"
-brew "golangci-lint"
-brew "gopls"
 brew "harper"
-brew "htop"
 brew "hyperfine"
-brew "iperf3"
 brew "jj"
 brew "lazygit"
 brew "ldns"
@@ -82,11 +82,17 @@ brew "uv"
 brew "watchexec"
 brew "yt-dlp"
 brew "zizmor"
+cargo "jj-vine"
+cask "claude-code"
+
+brew "delve"
+brew "golangci-lint"
+brew "gopls"
+
+# rustup installed from script because it doesn't require a new PATH entry
 cargo "cargo-auditable"
 cargo "cargo-llvm-cov"
 cargo "cargo-nextest"
-cargo "jj-vine"
-cask "claude-code"
 
 if OS.linux?
     brew "gcc@13"  # for compiling Python extensions
@@ -94,6 +100,7 @@ if OS.linux?
     brew "mold"
     brew "nvtop"
     brew "valgrind"
+    brew "xlsclients"
 
     flatpak "com.calibre_ebook.calibre"
     flatpak "com.github.tchx84.Flatseal"
@@ -129,9 +136,6 @@ else
     brew "bash"
     brew "podman"
     brew "poppler"  # for the CLI tools
-
-    require "socket"
-    hostname = Socket.gethostname
 
     if hostname.start_with?("FSO-")
       cask_args appdir: "~/Applications"

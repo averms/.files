@@ -19,12 +19,18 @@ That means no `pip`, no `python3`, no `python -m venv`. A great pattern for thro
 code is:
 
 ```shell
-uv run --with {{packages from PyPI}} python - <<'PY'
-{{code}}
+uv run [--with optional,packages,from,pypi] python - <<'PY'
+<CODE HERE>
 PY
 ```
 
-IMPORTANT: prefer rg and fd to the alternatives.
+Prefer rg and fd to the alternatives.
 They are both much faster, especially in VCS repositories. Both accept the `--hidden`
 flag if you want to search hidden files and directories and `--no-ignore` if you want to
 search gitignored files and directories.
+
+Before using an MCP server, always run
+```javascript
+return await describeNamespace(<MCP SERVER NAME>);
+```
+in codemode.

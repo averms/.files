@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "1.0.0",
+  "lastChangelogVersion": "2.0.0",
   "defaultProvider": "github-copilot",
   "defaultModel": "kimi-k3",
   "theme": "light",
