@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+#
+# do -- budget GNU Make
+
+set -eu
+shopt -s inherit_errexit
+
+add-default() {
+    nix profile add .#default
+}
+
+upgrade-all() {
+    nix profile upgrade --all
+}
+
+graphics() {
+    local graphics
+    graphics=$(nix build .#graphics --no-link --print-out-paths)
+    sudo nix build --no-link --profile /nix/var/nix/profiles/graphics "$graphics"
+}
+
+help() {
+    echo "$0 <task> [args]"
+    echo
+    compgen -A function | grep -v '^_' | cat -n
+}
+
+cd "$(dirname "${BASH_SOURCE[0]}")"
+TIMEFORMAT="Task completed in %3lR"
+time "${@:-help}"

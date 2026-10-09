@@ -138,6 +138,8 @@ else
     brew "poppler"  # for the CLI tools
 
     if hostname.start_with?("FSO-")
+      brew "go-task"
+      brew "pandoc"
       cask_args appdir: "~/Applications"
       cask "claude"
       cask "cursor"

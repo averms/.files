@@ -14,10 +14,6 @@ merge-editor = "meld"
 diff-args = ["--light", "$left", "$right", "--width=$width"]
 diff-expected-exit-codes = [0,1]
 
-[colors]
-# TODO: this looks ugly
-"diff token" = { underline = false, reverse = true }
-
 [templates]
 log = 'builtin_log_oneline ++ "\n"'
 git_push_bookmark = '"averms/" ++ slugify(description) ++ "/" ++ change_id.short()'

@@ -11,9 +11,6 @@
   "[github-actions-workflow]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
-  },
   "[makefile]": {
     "editor.insertSpaces": false
   },
@@ -22,9 +19,6 @@
   },
   "[toml]": {
     "editor.defaultFormatter": "tombi-toml.tombi"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "C_Cpp.intelliSenseEngine": "disabled",
   "clangd.arguments": ["--header-insertion=never"],
@@ -92,7 +86,6 @@
     "*": false
   },
   "github.copilot.nextEditSuggestions.enabled": true,
-  "javascript.updateImportsOnFileMove.enabled": "always",
   "js/ts.suggest.autoImports": false,
   "js/ts.updateImportsOnFileMove.enabled": "always",
   "json.schemaDownload.enable": true,
@@ -139,12 +132,13 @@
   "terminal.integrated.lineHeight": 1.2,
   "terminal.integrated.profiles.linux": {
     "fish": {
-      "path": "/home/linuxbrew/.linuxbrew/bin/fish"
+      "path": "fish"
     }
   },
   "terminal.integrated.profiles.osx": {
     "fish": {
-      "path": "/opt/homebrew/bin/fish"
+      "path": "${env:HOME}/.local/state/nix/profile/bin/fish",
+      "args": ["--login"]
     }
   },
   "terminal.integrated.suggest.enabled": false,

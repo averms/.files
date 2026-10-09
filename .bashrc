@@ -15,6 +15,6 @@ shopt -s globstar
 shopt -s histappend
 stty -ixon
 
-if shopt -q login_shell && test -n "$SSH_TTY" -a -e /home/linuxbrew/.linuxbrew/bin/fish; then
-    exec /home/linuxbrew/.linuxbrew/bin/fish
+if shopt -q login_shell && test -n "$SSH_TTY" -a -e "$HOME/.local/state/nix/profile/bin/fish"; then
+    exec "$HOME/.local/state/nix/profile/bin/fish"
 fi

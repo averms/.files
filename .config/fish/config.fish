@@ -50,20 +50,29 @@ set -gx GOAMD64 v3
 # Telemetry
 set -gx DOTNET_CLI_TELEMETRY_OPTOUT 1
 
-# Homebrew and OS-dependent configuration
+# Only really needed on macOS but it doesn't hurt on Linux
+if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+    source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+end
+
+# Let docker-compose use Podman
+if test (__fish_uname) = "Darwin"
+    set -gx DOCKER_HOST "unix://"$TMPDIR"podman/podman-machine-default-api.sock"
+else
+    set -gx DOCKER_HOST "unix://$XDG_RUNTIME_DIR/podman/podman.sock"
+end
+
+# Homebrew
 if test (__fish_uname) = "Darwin"
     set -gx HOMEBREW_PREFIX "/opt/homebrew"
     set -gx HOMEBREW_REPOSITORY "$HOMEBREW_PREFIX"
 else
     set -gx HOMEBREW_PREFIX "/home/linuxbrew/.linuxbrew"
     set -gx HOMEBREW_REPOSITORY "$HOMEBREW_PREFIX/Homebrew"
-
-    # Let docker-compose use Podman
-    set -gx DOCKER_HOST "unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 end
 
 set -gx HOMEBREW_CELLAR "$HOMEBREW_PREFIX/Cellar"
-fish_add_path -g --path --move "$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin"
+fish_add_path -g --path --move "$HOMEBREW_PREFIX/bin"
 if not contains "$HOMEBREW_PREFIX/share/info" $INFOPATH
     set -gx INFOPATH "$HOMEBREW_PREFIX/share/info" $INFOPATH
 end

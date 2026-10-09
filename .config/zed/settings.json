@@ -4,6 +4,7 @@
       "model": "gemini-2.5-pro",
       "provider": "copilot_chat"
     },
+    "dock": "right",
     "model_parameters": []
   },
   "autosave": "on_focus_change",
@@ -12,12 +13,13 @@
   "buffer_line_height": {
     "custom": 1.4
   },
+  "collaboration_panel": {
+    "dock": "left"
+  },
   "colorize_brackets": false,
   "edit_predictions": {
-    "mode": "eager"
-  },
-  "features": {
-    "edit_prediction_provider": "none"
+    "mode": "eager",
+    "provider": "none"
   },
   "file_types": {
     "yaml": [".clang-format", ".clang-tidy"]
@@ -27,6 +29,9 @@
     "inline_blame": {
       "enabled": false
     }
+  },
+  "git_panel": {
+    "dock": "left"
   },
   "hover_popover_enabled": false,
   "inlay_hints": {
@@ -106,11 +111,15 @@
   },
   "lsp_highlight_debounce": 9007199254740991,
   "middle_click_paste": false,
+  "outline_panel": {
+    "dock": "left"
+  },
   "preferred_line_length": 88,
   "preview_tabs": {
     "enabled": false
   },
   "project_panel": {
+    "dock": "left",
     "hide_gitignore": true
   },
   "scrollbar": {
@@ -132,7 +141,7 @@
     "shell": {
       "with_arguments": {
         "args": [],
-        "program": "/opt/homebrew/bin/fish"
+        "program": "fish"
       }
     }
   },
