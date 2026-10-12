@@ -143,11 +143,15 @@ else
       cask_args appdir: "~/Applications"
       cask "claude"
       cask "cursor"
+      cask "slack"
     else
+      cask "anki"
       cask "keepassxc"
       cask "openmtp"
+      cask "prismlauncher"
       cask "raycast"
       cask "syncthing-app"
+      cask "tailscale-app"
       cask "whatsapp"
     end
 

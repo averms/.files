@@ -1,4 +1,5 @@
 # C99 checks
+
 Checks: >-
   -*,
   bugprone-*,
@@ -9,8 +10,15 @@ Checks: >-
   performance-*,
   portability-*,
   readability-*,
-  -readability-magic-numbers,
-  -readability-identifier-length,
   -bugprone-easily-swappable-parameters,
+  -bugprone-multi-level-implicit-pointer-conversion,
   -misc-unused-parameters,
+  -portability-avoid-pragma-once,
+  -readability-identifier-length,
+  -readability-magic-numbers,
+
 FormatStyle: file
+
+CheckOptions:
+  # False positive on macOS
+  misc-include-cleaner.IgnoreHeaders: 'sys/errno\.h'

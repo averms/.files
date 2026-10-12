@@ -2,13 +2,11 @@
   description = "Declarative user-level packages.";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
   };
 
   outputs = {nixpkgs, ...}: let
     overlay = final: prev: {
-      jdk = final.temurin-bin-27;
-
       # pyp 1.3.0's tests fail on Python 3.14
       pyp = prev.pyp.overridePythonAttrs (old: {
         patches =
@@ -38,6 +36,11 @@
     formatter = forEachSystemPkgs (pkgs: pkgs.alejandra);
 
     packages = forEachSystemPkgs (pkgs: let
+      cpdf-bin = pkgs.runCommand "cpdf-bin-${pkgs.ocamlPackages.cpdf.version}" {
+        inherit (pkgs.ocamlPackages.cpdf) version meta;
+        disallowedReferences = [pkgs.ocaml];
+      } "install -Dm755 ${pkgs.ocamlPackages.cpdf}/bin/cpdf $out/bin/cpdf";
+
       # standalone docker-compose does not find buildx,
       # set DOCKER_CLI_PLUGIN_DIRS so it does
       docker-compose-with-buildx = pkgs.symlinkJoin {
@@ -53,121 +56,122 @@
       {
         default = pkgs.buildEnv {
           name = "user-packages";
-          paths = with pkgs;
+          paths =
             [
-              age
-              agent-browser
-              awscli2
-              b3sum
-              babashka
-              bash-language-server
-              bottom
-              claude-code
-              delta
-              docker-buildx
+              cpdf-bin
               docker-compose-with-buildx
-              dua
-              duckdb
-              fd
-              fish
-              fzf
-              gh
-              git
-              harper
-              hyperfine
-              jj-vine
-              jujutsu
-              lazygit
-              libarchive
-              markdown-oxide
-              neovim
-              netcat # this is the nice openbsd version
-              nono
-              numbat
-              ocamlPackages.cpdf
-              pi-coding-agent
-              pyp
-              rclone
-              remarshal
-              restic
-              ripgrep
-              ruff
-              samurai
-              scc
-              tree
-              ty
-              typst
-              uv
-              watchexec
+              pkgs.age
+              pkgs.agent-browser
+              pkgs.awscli2
+              pkgs.b3sum
+              pkgs.babashka-unwrapped
+              pkgs.bash-language-server
+              pkgs.bottom
+              pkgs.claude-code
+              pkgs.delta
+              pkgs.direnv
+              pkgs.docker-buildx
+              pkgs.dua
+              pkgs.duckdb
+              pkgs.fd
+              pkgs.fish
+              pkgs.fzf
+              pkgs.gh
+              pkgs.git
+              pkgs.harper
+              pkgs.hyperfine
+              pkgs.jj-vine
+              pkgs.jujutsu
+              pkgs.lazygit
+              pkgs.libarchive
+              pkgs.markdown-oxide
+              pkgs.neovim
+              pkgs.netcat # this is the nice openbsd version
+              pkgs.nono
+              pkgs.numbat
+              pkgs.pi-coding-agent
+              pkgs.pyp
+              pkgs.rclone
+              pkgs.remarshal
+              pkgs.restic
+              pkgs.ripgrep
+              pkgs.ruff
+              pkgs.samurai
+              pkgs.scc
+              pkgs.tree
+              pkgs.ty
+              pkgs.typst
+              pkgs.uv
+              pkgs.watchexec
             ]
-            ++ lib.optionals stdenv.hostPlatform.isLinux [
-              mold-unwrapped
+            ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+              pkgs.mold-unwrapped
             ]
-            ++ lib.optionals stdenv.hostPlatform.isDarwin [
-              bash
-              podman
-              poppler-utils
+            ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
+              pkgs.bash
+              pkgs.podman
+              pkgs.poppler-utils
             ];
         };
 
         occasional = pkgs.buildEnv {
           name = "occasional-packages";
-          paths = with pkgs;
+          paths =
             [
-              cargo-auditable
-              cargo-llvm-cov
-              cargo-nextest
-              cosign
-              crane
-              czkawka
-              delve
-              difftastic
-              dnscontrol
-              editorconfig-checker
-              fdk-aac-encoder
-              gallery-dl
-              git-pages-cli
-              goat
-              golangci-lint
-              gopls
-              graphviz
-              hurl
-              jdupes
-              ldns
-              llvm
-              mat2
-              mediainfo
-              mergiraf
-              mozjpeg
-              nvtopPackages.full
-              opentofu
-              opus-tools
-              osv-scanner
-              oxipng
-              parquet-tools
-              pinact
-              pnpm
-              pwgen
-              qpdf
-              qrencode
-              quarto
-              rsgain
-              rumdl
-              rustup
-              samply
-              scryer-prolog
-              shellcheck
-              shfmt
-              sqlfluff
-              streamrip
-              stylua
-              typstyle
-              xlsclients
-              yt-dlp
-              zizmor
+              pkgs.cargo-auditable
+              pkgs.cargo-llvm-cov
+              pkgs.cargo-nextest
+              pkgs.cosign
+              pkgs.crane
+              pkgs.czkawka
+              pkgs.delve
+              pkgs.difftastic
+              pkgs.dnscontrol
+              pkgs.editorconfig-checker
+              pkgs.fdk-aac-encoder
+              pkgs.gallery-dl
+              pkgs.git-pages-cli
+              pkgs.goat
+              pkgs.golangci-lint
+              pkgs.gopls
+              pkgs.graphviz
+              pkgs.hurl
+              pkgs.jdupes
+              pkgs.ldns
+              pkgs.llvm
+              pkgs.mat2
+              pkgs.mediainfo
+              pkgs.mergiraf
+              pkgs.mozjpeg
+              pkgs.nvtopPackages.full
+              pkgs.opentofu
+              pkgs.opus-tools
+              pkgs.osv-scanner
+              pkgs.oxipng
+              pkgs.parquet-tools
+              pkgs.pinact
+              pkgs.pnpm
+              pkgs.pwgen
+              pkgs.qpdf
+              pkgs.qrencode
+              pkgs.quarto
+              pkgs.rsgain
+              pkgs.rumdl
+              pkgs.rustup
+              pkgs.samply
+              pkgs.scryer-prolog
+              pkgs.shellcheck
+              pkgs.shfmt
+              pkgs.sqlfluff
+              pkgs.streamrip
+              pkgs.stylua
+              pkgs.typstyle
+              pkgs.xlsclients
+              pkgs.yt-dlp
+              pkgs.zizmor
             ]
-            ++ lib.optionals stdenv.hostPlatform.isLinux [
-              valgrind
+            ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+              pkgs.valgrind
             ];
         };
       }
@@ -175,8 +179,8 @@
         # Target of the /run/opengl-driver symlink
         graphics = pkgs.buildEnv {
           name = "graphics";
-          paths = with pkgs; [
-            mesa
+          paths = [
+            pkgs.mesa
           ];
         };
       });

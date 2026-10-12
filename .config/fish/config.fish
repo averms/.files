@@ -55,6 +55,8 @@ if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
     source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
 end
 
+direnv hook fish | source
+
 # Let docker-compose use Podman
 if test (__fish_uname) = "Darwin"
     set -gx DOCKER_HOST "unix://"$TMPDIR"podman/podman-machine-default-api.sock"
