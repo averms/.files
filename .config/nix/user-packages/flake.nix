@@ -104,13 +104,11 @@
               pkgs.uv
               pkgs.watchexec
             ]
-            ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-              pkgs.mold-unwrapped
-            ]
             ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
               pkgs.bash
               pkgs.podman
               pkgs.poppler-utils
+              pkgs.python314
             ];
         };
 

@@ -21,5 +21,10 @@
   "theme": "auto",
   "autoCompactEnabled": false,
   "disableDeepLinkRegistration": "disable",
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "modelSettings": {
+    "opus": {
+      "effortLevel": "high"
+    }
+  }
 }
