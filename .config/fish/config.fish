@@ -38,8 +38,6 @@ set -gx CLAUDE_CODE_DISABLE_TERMINAL_TITLE 1
 set -gx DISABLE_ERROR_REPORTING 1
 set -gx DISABLE_TELEMETRY 1
 
-# We want to keep ~/.local/bin for manually-installed tools.
-set -gx UV_TOOL_BIN_DIR "$HOME/.cargo/bin"
 set -gx UV_PYTHON_DOWNLOADS manual
 set -gx UV_PYTHON_PREFERENCE system
 set -gx UV_PYTHON_INSTALL_BIN 0

@@ -10,6 +10,11 @@
   "model": "opus",
   "spinnerTipsEnabled": false,
   "effortLevel": "high",
+  "modelSettings": {
+    "opus": {
+      "effortLevel": "high"
+    }
+  },
   "awaySummaryEnabled": false,
   "voice": {
     "enabled": true,
@@ -21,10 +26,5 @@
   "theme": "auto",
   "autoCompactEnabled": false,
   "disableDeepLinkRegistration": "disable",
-  "voiceEnabled": true,
-  "modelSettings": {
-    "opus": {
-      "effortLevel": "high"
-    }
-  }
+  "voiceEnabled": true
 }
