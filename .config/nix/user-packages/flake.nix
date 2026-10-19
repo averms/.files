@@ -2,13 +2,22 @@
   description = "Declarative user-level packages.";
 
   inputs = {
-    nixpkgs.url = "flake:nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
   };
 
   outputs =
     { nixpkgs, ... }:
     let
       overlay = final: prev: {
+        # until https://github.com/NixOS/nixpkgs/pull/573015 is merged
+        samurai = prev.samurai.overrideAttrs (old: {
+          makeFlags =
+            (old.makeFlags or [ ])
+            ++ final.lib.optionals final.stdenv.hostPlatform.isDarwin [
+              "LDLIBS="
+            ];
+        });
+
         # pyp 1.3.0's tests fail on Python 3.14
         pyp = prev.pyp.overridePythonAttrs (old: {
           patches = (old.patches or [ ]) ++ [
