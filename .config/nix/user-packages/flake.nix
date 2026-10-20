@@ -2,7 +2,7 @@
   description = "Declarative user-level packages.";
 
   inputs = {
-    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
+    nixpkgs.url = "flake:nixpkgs";
   };
 
   outputs =

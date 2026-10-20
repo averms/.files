@@ -13,6 +13,19 @@ upgrade-all() {
     nix profile upgrade --all
 }
 
+pin() {
+    local metadata root
+    nix registry pin nixpkgs "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst"
+    metadata=$(nix flake metadata nixpkgs --json)
+
+    # Locking a flake input skips the user registry, so pass the pin explicitly.
+    nix flake update nixpkgs --override-flake nixpkgs "$(jq -r .url <<<"$metadata")"
+
+    root=$HOME/.local/state/nix/gcroots/nixpkgs
+    mkdir -p "$(dirname "$root")"
+    nix build --out-link "$root" "$(jq -r .path <<<"$metadata")"
+}
+
 graphics() {
     local graphics
     graphics=$(nix build .#graphics --no-link --print-out-paths)
