@@ -19,7 +19,7 @@
         });
 
         # pyp 1.3.0's tests fail on Python 3.14
-        pyp = prev.pyp.overridePythonAttrs (old: {
+        pyp = prev.pyp.overrideAttrs (old: {
           patches = (old.patches or [ ]) ++ [
             (final.fetchpatch2 {
               hash = "sha256-h4pCd9SJX0K5M3lNwGaqb1x4ki1A+8ocA3Kk5zDEO2M=";
@@ -28,6 +28,23 @@
             })
           ];
         });
+
+        # my fork with some updates
+        magic-wormhole-rs = prev.magic-wormhole-rs.overrideAttrs (
+          finalAttrs: old: {
+            version = "0.8.1-unstable";
+            src = final.fetchFromGitHub {
+              owner = "averms-forks";
+              repo = "magic-wormhole.rs";
+              rev = "1e84bccfdc3f2ac428da20cb9548299bb9754c3d";
+              hash = "sha256-+EG9UN9iMrywF/4AEg/3DiQO10qqrbx1ICX5RnsX7s8=";
+            };
+            cargoDeps = final.rustPlatform.fetchCargoVendor {
+              inherit (finalAttrs) pname version src;
+              hash = "sha256-suGVemMxYDJivdpK23E75rZVc+RkQHj1sJ8PHqCssMQ=";
+            };
+          }
+        );
       };
 
       pkgsFor =
@@ -98,6 +115,7 @@
               pkgs.jujutsu
               pkgs.lazygit
               pkgs.libarchive
+              pkgs.magic-wormhole-rs
               pkgs.markdown-oxide
               pkgs.neovim
               pkgs.netcat # this is the nice openbsd version
