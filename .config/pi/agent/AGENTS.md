@@ -29,6 +29,12 @@ They are both much faster, especially in VCS repositories. Both accept the `--hi
 flag if you want to search hidden files and directories and `--no-ignore` if you want to
 search gitignored files and directories.
 
+Do not jump into implementation or change files unless clearly instructed to
+make changes. When the user's intent is ambiguous, default to providing
+information, doing research, and providing recommendations rather than taking
+action. Only proceed with edits, modifications, or implementations when the user
+explicitly requests them.
+
 Before using an MCP server, always run
 ```javascript
 return await describeNamespace(<MCP SERVER NAME>);

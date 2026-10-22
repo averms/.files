@@ -24,7 +24,6 @@
     "write": []
   },
   "network": {
-    "credentials": ["github"]
   },
   "workdir": {
     "access": "readwrite"
