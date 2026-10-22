@@ -14,14 +14,17 @@ upgrade-all() {
 }
 
 pin() {
-    local metadata root
+    local metadata
+    local registry=$HOME/.config/nix/registry.json
     nix registry pin nixpkgs "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst"
+    jq '.flakes |= map(if .from == {id: "nixpkgs", type: "indirect"} then .exact = true else . end)' \
+        "$registry" >"$registry.new"
+    mv "$registry.new" "$registry"
     metadata=$(nix flake metadata nixpkgs --json)
 
-    # Locking a flake input skips the user registry, so pass the pin explicitly.
     nix flake update nixpkgs --override-flake nixpkgs "$(jq -r .url <<<"$metadata")"
 
-    root=$HOME/.local/state/nix/gcroots/nixpkgs
+    local root=$HOME/.local/state/nix/gcroots/nixpkgs
     mkdir -p "$(dirname "$root")"
     nix build --out-link "$root" "$(jq -r .path <<<"$metadata")"
 }

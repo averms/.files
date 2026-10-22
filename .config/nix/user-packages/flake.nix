@@ -130,6 +130,7 @@
               pkgs.ruff
               pkgs.samurai
               pkgs.scc
+              pkgs.shfmt
               pkgs.tree
               pkgs.ty
               pkgs.typst
@@ -191,7 +192,6 @@
               pkgs.samply
               pkgs.scryer-prolog
               pkgs.shellcheck
-              pkgs.shfmt
               pkgs.sqlfluff
               pkgs.streamrip
               pkgs.stylua
