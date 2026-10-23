@@ -54,6 +54,9 @@ if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
 end
 
 direnv hook fish | source
+# Work around https://github.com/fish-shell/fish-shell/issues/13049 which will be fixed
+# in Fish 4.10
+function __direnv_update_fish_complete_path; end
 
 # Let docker-compose use Podman
 if test (__fish_uname) = "Darwin"

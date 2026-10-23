@@ -1,7 +1,7 @@
 {
   "lastChangelogVersion": "2.0.0",
   "defaultProvider": "github-copilot",
-  "defaultModel": "kimi-k3",
+  "defaultModel": "claude-sonnet-5.5",
   "theme": "light",
   "compaction": {
     "enabled": false
@@ -23,5 +23,9 @@
   "packages": [
     "../../nono/packages/nolabs-ai/pi/extensions/nono-sandbox.ts"
   ],
-  "tuiMode": "regular"
+  "tuiMode": "regular",
+  "httpIdleTimeoutMs": 60000,
+  "retry": {
+    "maxRetries": 8
+  }
 }
