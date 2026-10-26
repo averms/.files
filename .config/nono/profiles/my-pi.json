@@ -6,17 +6,22 @@
   },
   "filesystem": {
     "allow": [
+      "$XDG_RUNTIME_DIR",
       "/tmp",
       "/var/tmp",
       "~/.config/pi",
+      "~/.local/share/containers",
       "~/.local/share/go",
       "~/.local/share/uv",
       "~/.local/state/nvim"
     ],
     "read": [
+      "/etc/nix",
+      "~/.config/containers",
       "~/.config/gh",
       "~/.config/git",
       "~/.config/jj",
+      "~/.config/nix",
       "~/.config/npm",
       "~/.config/nvim",
       "~/.local/share/nvim"

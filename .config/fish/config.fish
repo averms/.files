@@ -127,7 +127,7 @@ alias gp="grep --extended-regexp --color=auto --ignore-case"
 alias th="trash-put"
 
 alias obsid="nvim ~/Documents/syncthing/wiki/Index.md"
-alias npi="NONO_TRUST_PROXY_CA=1 NONO_PROFILE=my-pi nono run --allow-cwd pi"
+alias npi="NONO_PROFILE=my-pi nono run --allow-cwd pi"
 
 # dotfiles management
 alias .f="git --git-dir=$HOME/.files"
